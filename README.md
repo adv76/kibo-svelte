@@ -52,6 +52,11 @@ __Social__
 - [ ] Reel
 - [ ] Video Player
 
+__Callouts__
+
+- [x] Announcement
+- [ ] Banner
+
 __Styling__
 
 - [ ] Typography
@@ -70,6 +75,6 @@ __Other__
 - [ ] Rating
 - [ ] Relative Time
 - [ ] Spinner
-- [ ] Status
+- [x] Status
 - [ ] Theme Switcher
 - [ ] Tree
