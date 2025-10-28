@@ -70,7 +70,7 @@ __Other__
 - [ ] Editor
 - [ ] Glimpse
 - [ ] Marquee
-- [ ] Pill
+- [x] Pill
 - [ ] QR Code
 - [ ] Rating
 - [ ] Relative Time
