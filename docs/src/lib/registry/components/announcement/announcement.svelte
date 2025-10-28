@@ -25,4 +25,6 @@
     )}
     {variant}
     {...restProps}
-/>
+>
+    {@render children?.()}
+</Badge>
