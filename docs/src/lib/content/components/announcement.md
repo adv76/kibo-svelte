@@ -8,7 +8,8 @@ installer: announcement
 ---
 
 <script>
-	import Preview from "$lib/components/internal/component-preview.svelte";
+  import Preview from "$lib/components/internal/component-preview.svelte";
+
 </script>
 
 ## Features

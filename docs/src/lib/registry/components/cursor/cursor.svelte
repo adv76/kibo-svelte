@@ -7,13 +7,13 @@
         class: className,
         children,   
         ...restProps
-    }: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
+    }: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();
 </script>
 
-<div
+<span
     bind:this={ref}
-    class={cn("flex items-center gap-1 truncate py-1", className)}
+    class={cn("pointer-events-none relative select-none", className)}
     {...restProps}
 >
     {@render children?.()}
-</div>
+</span>

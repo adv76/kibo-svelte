@@ -11,7 +11,7 @@ Contributors are welcome! Especially when it comes to the registry.
 __Collaboration__
 
 - [ ] Avatar Stack
-- [ ] Cursor
+- [x] Cursor
 
 __Project Management__
 
@@ -26,7 +26,7 @@ __Code__
 - [ ] Code Block
 - [ ] Contribution Graph
 - [ ] Sandbox
-- [ ] Snippet
+- [x] Snippet
 
 __Forms__
 

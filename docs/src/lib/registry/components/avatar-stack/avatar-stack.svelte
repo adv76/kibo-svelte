@@ -4,15 +4,21 @@
 
     let {
         ref = $bindable(null),
+        animate = false,
         class: className,
         children,   
         ...restProps
-    }: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
+    }: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
+        animate?: boolean;
+    } = $props();
 </script>
 
 <div
-    bind:this={ref}
-    class={cn("flex items-center gap-1 truncate py-1", className)}
+    class={cn(
+        "-space-x-1 flex items-center",
+        animate && "hover:space-x-0 [&>*]:transition-all",
+        className
+    )}
     {...restProps}
 >
     {@render children?.()}
