@@ -74,7 +74,7 @@ __Other__
 - [ ] QR Code
 - [ ] Rating
 - [ ] Relative Time
-- [ ] Spinner
+- [x] Spinner
 - [x] Status
 - [ ] Theme Switcher
 - [ ] Tree
