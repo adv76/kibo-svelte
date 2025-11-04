@@ -8,7 +8,7 @@ installer: announcement
 ---
 
 <script>
-  import Preview from "$lib/components/internal/component-preview.svelte";
+  import Preview from "$lib/components/internal/preview/preview.svelte";
 
 </script>
 
@@ -25,8 +25,8 @@ installer: announcement
 
 ### Themes
 
-<Preview name="announcement-themes" />
+<Preview path="announcement-themes" />
 
 ### Without Tag
 
-<Preview name="announcement-tagless" />
+<Preview path="announcement-tagless" />
