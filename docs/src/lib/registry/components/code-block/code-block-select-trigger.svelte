@@ -7,8 +7,6 @@
         class: className,
         ...restProps
     }: ComponentProps<typeof SelectTrigger> = $props();
-
-    // TODO wire up context
 </script>
 
 <SelectTrigger

@@ -7,8 +7,6 @@
         class: className,
         ...restProps
     }: ComponentProps<typeof SelectItem> = $props();
-
-    // TODO wire up context
 </script>
 
 <SelectItem class={cn("text-sm", className)} {...restProps} />

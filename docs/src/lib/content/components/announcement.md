@@ -9,7 +9,6 @@ installer: announcement
 
 <script>
   import Preview from "$lib/components/internal/preview/preview.svelte";
-
 </script>
 
 ## Features

@@ -1,12 +1,18 @@
 <script lang="ts">
     import { Select } from "$lib/components/ui/select";
     import type { ComponentProps } from "svelte";
+    import { getContext } from "./code-block-context.svelte";
 
     let {
         ...restProps
-    }: ComponentProps<typeof Select> = $props();
+    }: Omit<ComponentProps<typeof Select>, "type" | "onValueChange" | "value"> = $props();
 
-    // TODO wire up context
+    const ctx = getContext();
 </script>
 
-<Select onValueChange={onValueChange} value={value} {...restProps} />
+<Select
+    type="single"
+    onValueChange={(v) => ctx.onValueChange?.(v)} 
+    bind:value={ctx.value} 
+    {...restProps} 
+/>
