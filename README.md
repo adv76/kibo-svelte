@@ -23,8 +23,8 @@ __Project Management__
 
 __Code__
 
-- [ ] Code Block
-- [ ] Contribution Graph
+- [x] Code Block
+- [x] Contribution Graph
 - [ ] Sandbox
 - [x] Snippet
 

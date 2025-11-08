@@ -19,4 +19,6 @@
     class={cn("flex items-center gap-2", "group", status, className)}
     variant="secondary"
     {...restProps}
-/>
+>
+    {@render children?.()}
+</Badge>

@@ -1,17 +1,52 @@
 import { createContext } from "svelte";
-import type { CodeBlockContextType } from "./types";
+import type { CodeBlockData } from "./types";
 
-const [ getContext, setContext ] = createContext<CodeBlockContextType>();
-
-export function setupContext(data: CodeBlockContextType) {
-    let proxiedValue = $state(data.value);
-    let proxiedData = $state(data.data);
-
-    return setContext({
-        value: proxiedValue,
-        onValueChange: data.onValueChange,
-        data: proxiedData
-    });
+export type CodeBlockStateProps = {
+    value: string | undefined;
+    onValueChange: ((value: string) => void) | undefined;
+    data: CodeBlockData[];
 };
 
-export { getContext };
+class CodeBlockState {
+    #value = $state<string>();
+    #onValueChange: ((value: string) => void) | undefined;
+    #data = $state<CodeBlockData[]>()!;
+
+    constructor(props: CodeBlockStateProps) {
+        this.#value = props.value;
+        this.#onValueChange = props.onValueChange;
+        this.#data = props.data;
+    };
+
+    get value() {
+        return this.#value;
+    };
+
+    set value(v) {
+        this.#value = v;
+    };
+
+    get onValueChange() {
+        return this.#onValueChange;
+    };
+
+    get data() {
+        return this.#data;
+    };
+
+    set data(v) {
+        this.#data = v;
+    };
+};
+
+const [ getContext, setContext ] = createContext<CodeBlockState>();
+
+
+export function setupContext(props: CodeBlockStateProps) {
+    return setContext(new CodeBlockState(props));
+};
+
+export { 
+    type CodeBlockState, 
+    getContext 
+};

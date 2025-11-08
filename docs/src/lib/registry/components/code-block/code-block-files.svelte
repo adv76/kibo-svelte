@@ -12,10 +12,12 @@
         children,
         ...restProps
     }: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
-        child?: Snippet<[CodeBlockData[]]>;
+        child?: Snippet<[CodeBlockData]>;
     } = $props();
 
     const ctx = getContext();
+
+    const selectedBlock = $derived(ctx.data.find(block => block.language == ctx.value));
 </script>
 
 <div
@@ -23,8 +25,8 @@
     class={cn("flex grow flex-row items-center gap-2", className)}
     {...restProps}
 >
-    {#if child}
-        {@render child(ctx.data)}
+    {#if child && selectedBlock}
+        {@render child(selectedBlock)}
     {:else}
         {@render children?.()}
     {/if}

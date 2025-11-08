@@ -5,6 +5,7 @@
     import PreviewRender from "./preview-render.svelte";
     import PreviewContent from "./preview-content.svelte";
     import type { Component } from "svelte";
+    import PreviewCode from "./preview-code.svelte";
 
     type PreviewProps = {
         path: string;
@@ -17,6 +18,11 @@
         className,
         type = "component"
     }: PreviewProps = $props();
+
+    async function loadCode(): Promise<string> {
+        const src = await import(`../../../examples/${path}.svelte?raw`);
+        return src.default;
+    };
 
     async function loadComponent(): Promise<Component> {
         const module = await import(`../../../examples/${path}.svelte`);
@@ -48,7 +54,9 @@
             class="size-full overflow-y-auto bg-background"
             value="code"
         >
-            <!-- <PreviewCode code={parsedCode} filename="index.tsx" language="tsx" /> -->
+            {#await loadCode() then sourceCode}
+                <PreviewCode code={sourceCode} filename="index.ts" language="tsx" />
+            {/await}
         </Tabs.Content>
         <Tabs.Content
             class={cn(

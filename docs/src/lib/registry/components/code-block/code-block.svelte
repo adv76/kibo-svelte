@@ -23,8 +23,6 @@
         onValueChange,
         data
     });
-
-    $inspect(ctx.value);
 </script>
 
 <div

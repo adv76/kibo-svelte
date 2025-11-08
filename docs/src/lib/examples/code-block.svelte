@@ -34,12 +34,10 @@
 <CodeBlock.Root data={code} value={code[0].language}>
     <CodeBlock.Header>
         <CodeBlock.Files>
-            {#snippet child(items)}
-                {#each items as item(item.language)}
-                    <CodeBlock.Filename value={item.language}>
-                        {item.filename}
-                    </CodeBlock.Filename>
-                {/each}
+            {#snippet child(item)}
+                <CodeBlock.Filename value={item.language}>
+                    {item.filename}
+                </CodeBlock.Filename>
             {/snippet}
         </CodeBlock.Files>
         <CodeBlock.Select>
@@ -62,15 +60,13 @@
         />
     </CodeBlock.Header>
     <CodeBlock.Body>
-        {#snippet child(items)}
-            {#each items as item(item.language)}
-                <CodeBlock.Item value={item.language}>
-                    <CodeBlock.Content 
-                        language={item.language as CodeBlock.BundledLanguage} 
-                        code={item.code} 
-                    />
-                </CodeBlock.Item>
-            {/each}
+        {#snippet child(item)}
+            <CodeBlock.Item value={item.language}>
+                <CodeBlock.Content 
+                    language={item.language as CodeBlock.BundledLanguage} 
+                    code={item.code} 
+                />
+            </CodeBlock.Item>
         {/snippet}
     </CodeBlock.Body>
 </CodeBlock.Root>

@@ -10,15 +10,17 @@
         children,
         ...restProps
     }: HTMLAttributes<HTMLSpanElement> & {
-        child: Snippet<[CodeBlockData[]]>;
+        child: Snippet<[CodeBlockData]>;
     } = $props();
 
     const ctx = getContext();
+
+    const selectedBlock = $derived(ctx.data.find(block => block.language == ctx.value));
 </script>
 
 <div {...restProps}>
-    {#if child}
-        {@render child(ctx.data)}
+    {#if child && selectedBlock}
+        {@render child(selectedBlock)}
     {:else}
         {@render children?.()}
     {/if}

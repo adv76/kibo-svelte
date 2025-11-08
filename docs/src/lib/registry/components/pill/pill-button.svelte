@@ -20,4 +20,6 @@
     size="icon"
     variant="ghost"
     {...restProps}
-/>
+>
+    {@render children?.()}
+</Button>

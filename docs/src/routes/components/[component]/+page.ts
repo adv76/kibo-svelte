@@ -3,6 +3,8 @@ import type { PageLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
 export const load: PageLoad = async ({ params }) => {
+    console.log(params.component);
+
     const component = await import(`../../../lib/content/components/${params.component}.md`) as 
     { 
         default: Component; 

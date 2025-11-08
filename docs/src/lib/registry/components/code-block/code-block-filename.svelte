@@ -16,7 +16,7 @@
         value?: string;
     } = $props();
 
-    const { value: activeValue } = getContext();
+    const ctx = getContext();
 
     // TODO find an icon lib
     // const defaultIcon = Object.entries(filenameIconMap).find(([pattern]) => {
@@ -29,7 +29,7 @@
     const Icon = $derived(icon ?? FileCode);
 </script>
 
-{#if value === activeValue}
+{#if value === ctx.value}
     <div
         bind:this={ref}
         class="flex items-center gap-2 bg-secondary px-4 py-1.5 text-muted-foreground text-xs"

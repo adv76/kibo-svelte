@@ -12,9 +12,9 @@
 </script>
 
 {#if !delta}
-    <Minus className={cn("size-3 text-muted-foreground", className)} />
+    <Minus class={cn("size-3 text-muted-foreground", className)} />
 {:else if delta > 0}
-    <ChevronUp className={cn("size-3 text-emerald-500", className)} />
+    <ChevronUp class={cn("size-3 text-emerald-500", className)} />
 {:else}
-   <ChevronDown className={cn("size-3 text-rose-500", className)} />;
+    <ChevronDown class={cn("size-3 text-rose-500", className)} />
 {/if}
