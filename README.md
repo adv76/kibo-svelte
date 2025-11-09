@@ -10,7 +10,7 @@ Contributors are welcome! Especially when it comes to the registry.
 
 __Collaboration__
 
-- [ ] Avatar Stack
+- [x] Avatar Stack
 - [x] Cursor
 
 __Project Management__

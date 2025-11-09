@@ -37,7 +37,7 @@
         <title>Contribution Graph</title>
         {#if !hideMonthLabels}
             <g class="fill-current">
-                {#each monthLabels as label, weekIndex(weekIndex)}
+                {#each monthLabels as { label, weekIndex }(weekIndex)}
                     <text
                         dominant-baseline="hanging"
                         x={(ctx.blockSize + ctx.blockMargin) * weekIndex}

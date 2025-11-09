@@ -7,10 +7,10 @@
     let {
         ref = $bindable(null),
         class: className,
-        child,   
+        legendLevel,   
         ...restProps
     }: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
-        child?: Snippet<[number]>;
+        legendLevel?: Snippet<[number]>;
     } = $props();
 
     const ctx = getContext();
@@ -25,8 +25,8 @@
     </span>
 
     {#each { length: ctx.maxLevel + 1 } as _, level(level)}
-        {#if child}
-            {@render child(level)}
+        {#if legendLevel}
+            {@render legendLevel(level)}
         {:else}
             <svg height={ctx.blockSize} width={ctx.blockSize}>
                 <title>{`${level} contributions`}</title>
