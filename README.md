@@ -63,7 +63,7 @@ __Styling__
 
 __Other__
 
-- [ ] Color Picker
+- [x] Color Picker
 - [ ] Comparison
 - [ ] Deck
 - [ ] Dialog Stack
