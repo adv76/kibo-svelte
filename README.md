@@ -30,7 +30,7 @@ __Code__
 
 __Forms__
 
-- [ ] Choicebox
+- [x] Choicebox
 - [ ] Combobox
 - [ ] Dropzone
 - [ ] Mini Calendar
@@ -76,5 +76,5 @@ __Other__
 - [ ] Relative Time
 - [x] Spinner
 - [x] Status
-- [ ] Theme Switcher
+- [x] Theme Switcher
 - [ ] Tree

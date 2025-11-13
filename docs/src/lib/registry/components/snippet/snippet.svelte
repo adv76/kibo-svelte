@@ -5,6 +5,7 @@
 
     let {
         ref = $bindable(null),
+        value = $bindable(),
         class: className,
         children,   
         ...restProps
@@ -14,9 +15,12 @@
 
 <Tabs
     bind:ref
+    bind:value
     class={cn(
         "group w-full gap-0 overflow-hidden rounded-md border",
       className
     )}
     {...restProps}
-/>
+>
+    {@render children?.()}
+</Tabs>

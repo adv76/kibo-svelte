@@ -14,4 +14,6 @@
     bind:ref    
     class={className} 
     {...restProps}
-/>
+>
+    {@render children?.()}
+</FieldDescription>
