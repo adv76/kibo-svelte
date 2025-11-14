@@ -24,7 +24,6 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          working-directory: ./docs
         
       - name: Install dependencies
         run: pnpm i
