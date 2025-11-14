@@ -1,5 +1,5 @@
 import type { Component } from 'svelte';
-import type { PageLoad } from './$types';
+import type { EntryGenerator, PageLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
 export const load: PageLoad = async ({ params }) => {
@@ -25,4 +25,21 @@ export const load: PageLoad = async ({ params }) => {
 
         componentName: params.component
     };
+};
+
+export const entries: EntryGenerator = async () => {
+    const components = import.meta.glob("../../../lib/content/components/*.md");
+
+    const entries = [];
+
+    for (const filePath in components) {
+        const split = filePath.replaceAll("\\", "/").split("/");
+        const fileName = split[split.length - 1];
+
+        const componentName = fileName.substring(0, fileName.length - 3);
+
+        entries.push({ component: componentName });
+    }
+
+	return entries;
 };

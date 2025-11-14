@@ -1,0 +1,32 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "announcement",
+	"title": "Announcement",
+	"type": "registry:ui",
+	"description": "A compound badge designed to display an announcement.",
+	"registryDependencies": [
+		"badge"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n    import { Badge } from \"$lib/components/ui/badge\";\r\n    import { cn } from \"$UTILS$.js\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        variant = \"outline\",\r\n        themed = false,\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: ComponentProps<typeof Badge> & {\r\n        themed?: boolean;\r\n    } = $props();\r\n</script>\r\n\r\n<Badge\r\n    bind:ref\r\n    class={cn(\r\n        \"group max-w-full gap-2 rounded-full bg-background px-3 py-0.5 font-medium shadow-sm transition-all\",\r\n        \"hover:shadow-md\",\r\n        themed && \"announcement-themed border-foreground/5\",\r\n        className\r\n    )}\r\n    {variant}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</Badge>\r\n",
+			"type": "registry:file",
+			"target": "announcement/announcement.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\r\n</script>\r\n\r\n<div\r\n    bind:this={ref}\r\n    class={cn(\r\n        \"-ml-2.5 shrink-0 truncate rounded-full bg-foreground/5 px-2.5 py-1 text-xs\",\r\n        \"group-[.announcement-themed]:bg-background/60\",\r\n        className\r\n    )}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</div>\r\n",
+			"type": "registry:file",
+			"target": "announcement/announcement-tag.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\r\n</script>\r\n\r\n<div\r\n    bind:this={ref}\r\n    class={cn(\"flex items-center gap-1 truncate py-1\", className)}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</div>\r\n",
+			"type": "registry:file",
+			"target": "announcement/announcement-title.svelte"
+		},
+		{
+			"content": "import Announcement from \"./announcement.svelte\";\r\nimport AnnouncementTag from \"./announcement-tag.svelte\";\r\nimport AnnouncementTitle from \"./announcement-title.svelte\";\r\n\r\nexport {\r\n    Announcement,\r\n    AnnouncementTag,\r\n    AnnouncementTitle,\r\n\r\n    Announcement as Root,\r\n    AnnouncementTag as Tag,\r\n    AnnouncementTitle as Title\r\n};\r\n",
+			"type": "registry:file",
+			"target": "announcement/index.ts"
+		}
+	]
+}

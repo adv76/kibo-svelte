@@ -1,0 +1,39 @@
+{
+    "$schema": "https://shadcn-svelte.com/schema/registry.json",
+    "name": "shadcn-svelte",
+    "homepage": "https://adv76.github.io/kibo-svelte",
+    "aliases": {
+		"lib": "$lib/registry/lib",
+		"ui": "$lib/registry/ui",
+		"components": "./components",
+		"utils": "$lib/utils",
+		"hooks": "$lib/registry/hooks"
+	},
+    "items": [
+        {
+            "name": "announcement",
+            "type": "registry:ui",
+            "title": "Announcement",
+            "description": "A compound badge designed to display an announcement.",
+            "registryDependencies": ["badge"],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/announcement/announcement.svelte",
+                    "type": "registry:file"
+                },
+                {
+                    "path": "src/lib/registry/components/announcement/announcement-tag.svelte",
+                    "type": "registry:file"
+                },
+                {
+                    "path": "src/lib/registry/components/announcement/announcement-title.svelte",
+                    "type": "registry:file"
+                },
+                {
+                    "path": "src/lib/registry/components/announcement/index.ts",
+                    "type": "registry:file"
+                }
+            ]
+        }
+    ]
+}

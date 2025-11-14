@@ -1,0 +1,12 @@
+[
+	{
+		"name": "announcement",
+		"title": "Announcement",
+		"type": "registry:ui",
+		"description": "A compound badge designed to display an announcement.",
+		"registryDependencies": [
+			"badge"
+		],
+		"relativeUrl": "announcement.json"
+	}
+]
