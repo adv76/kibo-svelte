@@ -5,7 +5,8 @@
     // MarqueeFade,
     // MarqueeItem,
     // } from "@repo/marquee";
-    import { Button } from "$lib/components/ui/button";
+    import { resolve } from "$app/paths";
+import { Button } from "$lib/components/ui/button";
     import {
         AlertCircleIcon,
         AppWindowIcon,
@@ -386,7 +387,7 @@
                 Copy, customize, and ship faster than ever.
             </p>
         </div>
-        <Button href="/patterns" size="lg">
+        <Button href={resolve("/patterns")} size="lg">
             <span>Explore patterns</span>
             <ArrowRightIcon size={16} />
         </Button>

@@ -3,6 +3,7 @@
     import { navigationMenuTriggerStyle } from "$lib/components/ui/navigation-menu/navigation-menu-trigger.svelte";
     import { cn } from "$lib/utils";
     import { page } from "$app/state";
+    import { resolve } from "$app/paths";
 
     type LinksProps = {
         class?: string;
@@ -60,7 +61,7 @@
                 "h-auto bg-transparent px-3 py-1.5 shadow-none transition-all",
                 link.active && "bg-primary/10 text-primary"
             )}
-            href={link.href}
+            href={resolve(link.href as unknown as any)}
         >
             {link.label}
             {#if link.count} 

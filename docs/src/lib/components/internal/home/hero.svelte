@@ -6,7 +6,8 @@
     //     SiTailwindcss,
     //     SiTypescript,
     // } from "@icons-pack/react-simple-icons";
-    import { Button } from "$lib/components/ui/button";
+    import { resolve } from "$app/paths";
+import { Button } from "$lib/components/ui/button";
     import * as Tooltip from "$lib/components/ui/tooltip";
     //import { DemoVideo } from "../demo-video";
     //import { GitHubButton } from "../github-button";
@@ -97,7 +98,7 @@
                 </p>
             </div>
             <div class="flex items-center justify-center gap-4">
-                <Button href="/components" size="lg">
+                <Button href={resolve("/components")} size="lg">
                     Browse components
                 </Button>
                 <!-- <GitHubButton /> -->

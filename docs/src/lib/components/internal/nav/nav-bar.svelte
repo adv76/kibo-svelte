@@ -6,6 +6,7 @@
     import MobileSearch from "./mobile-search.svelte";
     import Search from "./search.svelte";
     import { getComponents } from "$lib/source";
+    import { resolve } from "$app/paths";
 
     // const componentsCount = source
     // .getPages()
@@ -26,7 +27,7 @@
 
 <div class="fixed inset-x-0 top-0 z-40 flex items-center justify-between bg-fd-background/80 px-4 py-3 backdrop-blur-sm transition-colors">
     <div class="flex items-center gap-3">
-        <a href="/" class="rounded-md px-3 py-1.5 hover:bg-accent hover:text-accent-foreground">
+        <a href={resolve("/")} class="rounded-md px-3 py-1.5 hover:bg-accent hover:text-accent-foreground">
             <Logo />
         </a>
         <Links
