@@ -20,6 +20,8 @@
 		"@sveltejs/kit": "^2.43.2",
 		"@sveltejs/vite-plugin-svelte": "^6.2.0",
 		"@tanstack/table-core": "^8.21.3",
+		"@types/culori": "^4.0.1",
+		"@types/qrcode": "^1.5.6",
 		"bits-ui": "^2.14.1",
 		"clsx": "^2.1.1",
 		"embla-carousel-svelte": "^8.6.0",
@@ -44,6 +46,7 @@
 		"@selemondev/svelte-marquee": "^0.1.1",
 		"@tailwindcss/vite": "^4.1.16",
 		"color": "^5.0.2",
+		"culori": "^4.0.2",
 		"date-fns": "^4.1.0",
 		"qrcode": "^1.5.4",
 		"tailwindcss": "^4.1.16"

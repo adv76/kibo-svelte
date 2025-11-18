@@ -105,6 +105,21 @@ import { Button } from "$lib/components/ui/button";
             </div>
         </div>
         <div class="-mb-24 overflow-hidden rounded-4xl border-background/10 border-x bg-gradient-to-b from-background/15 to-background/40 p-8 backdrop-blur-lg">
+            <!-- DemoVideo -->
+            <div class="pointer-events-none relative aspect-video w-full select-none overflow-hidden rounded-t-lg">
+                <!-- <iframe src="https://youtu.be/FqQ9j6bqtf0" title="Demo Video" class="w-full"></iframe>  -->
+                <iframe  
+                    class="w-full aspect-video" 
+                    src="https://www.youtube.com/embed/FqQ9j6bqtf0?si=PZQNfjCGaAIwMg95&autoplay=1&controls=0&disablekb=1&playlist=FqQ9j6bqtf0&loop=1&mute=1" 
+                    title="Demo Video" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen
+                ></iframe>
+            </div>
+            <!-- End DemoVideo -->
+            
             <!-- <DemoVideo url="https://youtu.be/FqQ9j6bqtf0" /> -->
         </div>
     </div>

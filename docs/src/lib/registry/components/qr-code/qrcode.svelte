@@ -1,19 +1,19 @@
 <script lang="ts">
     import type { HTMLAttributes } from "svelte/elements";
-    import { cn, type WithElementRef } from "$lib/utils.js";
+    import { cn } from "$lib/utils.js";
     import QR from "qrcode";
+    import { formatHex, oklch } from "culori";
+    import { untrack } from "svelte";
 
 
     let {
-        ref = $bindable(null),
         data,
         foreground,
         background,
         robustness = "M",
         class: className,
-        children,   
         ...restProps
-    }: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
+    }: HTMLAttributes<HTMLDivElement> & {
         data: string;
         foreground?: string;
         background?: string;
@@ -36,25 +36,25 @@
         };
     };
 
-    const generateQRSVG = async (data: string, robustness: "L" | "M" | "Q" | "H", foreground?: string, background?: string) => {
+    const generateQRSVG = async (text: string, ec: "L" | "M" | "Q" | "H", fg?: string, bg?: string) => {
         try {
             const styles = getComputedStyle(document.documentElement);
-            const foregroundColor = foreground ?? styles.getPropertyValue("--foreground");
-            const backgroundColor = background ?? styles.getPropertyValue("--background");
+            const foregroundColor = fg ?? styles.getPropertyValue("--foreground");
+            const backgroundColor = bg ?? styles.getPropertyValue("--background");
 
             const foregroundOklch = getOklch(foregroundColor, [0.21, 0.006, 285.885]);
             const backgroundOklch = getOklch(backgroundColor, [0.985, 0, 0]);
 
-            return await QR.toString(data, {
+            return await QR.toString(text, {
                 type: "svg",
                 color: {
                     dark: formatHex(oklch({ mode: "oklch", ...foregroundOklch })),
                     light: formatHex(oklch({ mode: "oklch", ...backgroundOklch })),
                 },
                 width: 200,
-                errorCorrectionLevel: robustness,
+                errorCorrectionLevel: ec,
                 margin: 0,
-            }) as string;
+            });
         } catch (err) {
             console.error(err);
         }
@@ -68,7 +68,9 @@
         background;
         robustness;
 
-        generateQRSVG(data, robustness, foreground, background).then((svg) => svgString = svg)
+        untrack(() => {
+            generateQRSVG(data, robustness, foreground, background).then((svg) => svgString = svg);
+        });
     });
 </script>
 

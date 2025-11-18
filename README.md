@@ -71,7 +71,7 @@ __Other__
 - [ ] Glimpse
 - [ ] Marquee
 - [x] Pill
-- [ ] QR Code
+- [x] QR Code
 - [ ] Rating
 - [ ] Relative Time
 - [x] Spinner
