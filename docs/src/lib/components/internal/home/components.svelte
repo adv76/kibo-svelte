@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { resolve } from "$app/paths";
     import { Button } from "$lib/components/ui/button";
 
     import CodeBlockDemo from "./demo-components/code-block-demo.svelte";
@@ -61,7 +62,7 @@
                 build, customize and extend them to your own needs.
             </p>
         </div>
-        <Button href="/components" size="lg">
+        <Button href={resolve("/components")} size="lg">
             <span>Explore components</span>
             <ArrowRightIcon size={16} />
         </Button>
