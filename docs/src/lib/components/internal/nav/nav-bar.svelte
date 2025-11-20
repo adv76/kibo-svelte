@@ -38,12 +38,12 @@
         />
     </div>
 
-    <div class="hidden items-center gap-3 md:flex">
+    <div class="max-md:hidden items-center gap-3 md:flex">
         <Search />
         <!-- <GitHub /> -->
     </div>
 
-    <div class="flex items-center gap-3 md:hidden">
+    <div class="max-md:flex items-center gap-3 md:hidden">
         <MobileSearch />
         <MobileMenu />
     </div>

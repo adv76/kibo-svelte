@@ -6,5 +6,5 @@ import { resolve } from "$app/paths";
 export const load: PageLoad = () => {
     var firstComponent = getComponents()[0];
 
-    redirect(302, resolve(`/components/${firstComponent.name}`));
+    redirect(302, resolve(`/components/${firstComponent.key}`));
 };

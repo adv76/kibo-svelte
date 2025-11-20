@@ -1,3 +1,6 @@
 {
-
+    "scripts": {
+        "dev": "pnpm -F docs dev",
+        "build": "pnpm -F docs build"
+    }
 }
