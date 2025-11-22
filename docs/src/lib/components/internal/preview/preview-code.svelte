@@ -13,11 +13,15 @@
         filename
     }: PreviewCodeProps = $props();
 
+    function cleanupCode(code: string): string {
+        return code.replace("$lib/registry/components/", "$lib/components/kibo-ui/"); // swap registry path for real path
+    };
+
     const data = $derived([
         {
-        language,
-        filename,
-        code,
+            language,
+            filename,
+            code: cleanupCode(code),
         },
     ]);
 </script>

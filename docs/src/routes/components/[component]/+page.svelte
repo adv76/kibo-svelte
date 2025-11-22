@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Installer from '$lib/components/internal/installer.svelte';
     import Preview from '$lib/components/internal/preview/preview.svelte';
 
     let { data } = $props();
@@ -11,7 +12,9 @@
 
         <Preview path={data.metadata.installer} />
 
-        <h2>Installation</h2>
+        <h2 id="installation">Installation</h2>
+
+        <Installer packageName={data.metadata.installer} />
 
         <data.component />
     </article>

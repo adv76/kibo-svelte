@@ -8,5 +8,41 @@
 			"badge"
 		],
 		"relativeUrl": "announcement.json"
+	},
+	{
+		"name": "avatar-stack",
+		"title": "Avatar Stack",
+		"type": "registry:ui",
+		"description": "Avatar Stack is a component that allows you to stack and overlap avatars.",
+		"registryDependencies": [
+			"avatar"
+		],
+		"relativeUrl": "avatar-stack.json"
+	},
+	{
+		"name": "choicebox",
+		"title": "Choicebox",
+		"type": "registry:ui",
+		"description": "Choiceboxes are a great way to show radio or checkbox options with a card style.",
+		"registryDependencies": [
+			"field",
+			"radio-group"
+		],
+		"relativeUrl": "choicebox.json"
+	},
+	{
+		"name": "code-block",
+		"title": "Code Block",
+		"type": "registry:ui",
+		"description": "Provides syntax highlighting, line numbers, and copy to clipboard functionality for code blocks.",
+		"devDependencies": [
+			"@lucide/svelte",
+			"shiki"
+		],
+		"registryDependencies": [
+			"button",
+			"select"
+		],
+		"relativeUrl": "code-block.json"
 	}
 ]

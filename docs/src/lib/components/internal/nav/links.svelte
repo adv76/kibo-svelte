@@ -26,27 +26,27 @@
             label: "Docs",
             href: "/docs",
             active:
-                pathname !== "/" &&
-                !pathname.startsWith("/components") &&
-                !pathname.startsWith("/blocks") &&
-            !pathname.startsWith("/patterns"),
+                pathname !== resolve("/") &&
+                !pathname.startsWith(resolve("/components")) &&
+                !pathname.startsWith(resolve("/blocks")) &&
+                !pathname.startsWith(resolve("/patterns")),
         },
         {
             label: "Components",
             href: "/components",
-            active: pathname.startsWith("/components"),
+            active: pathname.startsWith(resolve("/components")),
             count: componentsCount,
         },
         {
             label: "Blocks",
             href: "/blocks",
-            active: pathname.startsWith("/blocks"),
+            active: pathname.startsWith(resolve("/blocks")),
             count: blocksCount,
         },
         {
             label: "Patterns",
             href: "/patterns",
-            active: pathname.startsWith("/patterns"),
+            active: pathname.startsWith(resolve("/patterns")),
             count: patternsCount,
         },
     ]);

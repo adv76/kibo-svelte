@@ -19,19 +19,201 @@
             "files": [
                 {
                     "path": "src/lib/registry/components/announcement/announcement.svelte",
-                    "type": "registry:file"
+                    "type": "registry:file",
+                    "target": "../kibo-ui/announcement/announcement.svelte"
                 },
                 {
                     "path": "src/lib/registry/components/announcement/announcement-tag.svelte",
-                    "type": "registry:file"
+                    "type": "registry:file",
+                    "target": "../kibo-ui/announcement/announcement-tag.svelte"
                 },
                 {
                     "path": "src/lib/registry/components/announcement/announcement-title.svelte",
-                    "type": "registry:file"
+                    "type": "registry:file",
+                    "target": "../kibo-ui/announcement/announcement-title.svelte"
                 },
                 {
                     "path": "src/lib/registry/components/announcement/index.ts",
-                    "type": "registry:file"
+                    "type": "registry:file",
+                    "target": "../kibo-ui/announcement/index.ts"
+                }
+            ]
+        },
+        {
+            "name": "avatar-stack",
+            "type": "registry:ui",
+            "title": "Avatar Stack",
+            "description": "Avatar Stack is a component that allows you to stack and overlap avatars.",
+            "registryDependencies": ["avatar"],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/avatar-stack/avatar-stack.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/avatar-stack/avatar-stack.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/avatar-stack/avatar-stack-avatar.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui//avatar-stack/avatar-stack-avatar.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/avatar-stack/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/avatar-stack/index.ts"
+                }
+            ]
+        },
+        {
+            "name": "choicebox",
+            "type": "registry:ui",
+            "title": "Choicebox",
+            "description": "Choiceboxes are a great way to show radio or checkbox options with a card style.",
+            "registryDependencies": ["field", "radio-group"],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/choicebox/choicebox-context.svelte.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/choicebox/choicebox-context.svelte.ts"
+                },
+                {
+                    "path": "src/lib/registry/components/choicebox/choicebox.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/choicebox/choicebox.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/choicebox/choicebox-indicator.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/choicebox/choicebox-indicator.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/choicebox/choicebox-item.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/choicebox/choicebox-item.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/choicebox/choicebox-item-description.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/choicebox/choicebox-item-description.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/choicebox/choicebox-item-header.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/choicebox/choicebox-item-header.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/choicebox/choicebox-item-subtitle.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/choicebox/choicebox-item-subtitle.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/choicebox/choicebox-item-title.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/choicebox/choicebox-item-title.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/choicebox/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/choicebox/index.ts"
+                }
+            ]
+        },
+        {
+            "name": "code-block",
+            "type": "registry:ui",
+            "title": "Code Block",
+            "description": "Provides syntax highlighting, line numbers, and copy to clipboard functionality for code blocks.",
+            "devDependencies": ["@lucide/svelte", "shiki"],
+            "registryDependencies": ["button", "select"],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/code-block/class-names.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/announcement/index.ts"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/code-block.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/code-block.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/code-block-body.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/code-block-body.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/code-block-content.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/code-block-content.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/code-block-context.svelte.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/code-block-context.svelte.ts"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/code-block-copy-button.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/code-block-copy-button.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/code-block-fallback.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/code-block-fallback.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/code-block-filename.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/code-block-filename.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/code-block-files.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/code-block-files.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/code-block-header.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/code-block-header.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/code-block-item.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/code-block-item.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/code-block-select.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/code-block-select.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/code-block-select-content.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/code-block-select-content.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/code-block-select-item.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/code-block-select-item.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/code-block-select-trigger.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/code-block-select-trigger.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/code-block-select-value.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/code-block-select-value.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/index.ts"
+                },
+                {
+                    "path": "src/lib/registry/components/code-block/types.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/code-block/types.ts"
                 }
             ]
         }

@@ -1,0 +1,58 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "choicebox",
+	"title": "Choicebox",
+	"type": "registry:ui",
+	"description": "Choiceboxes are a great way to show radio or checkbox options with a card style.",
+	"registryDependencies": [
+		"field",
+		"radio-group"
+	],
+	"files": [
+		{
+			"content": "import { createContext } from \"svelte\";\r\n\r\nexport type ChoiceboxStateProps = {\r\n    id?: string;\r\n    value: string;\r\n};\r\n\r\nclass ChoiceboxState {\r\n    #id = $state<string>()\r\n    #value = $state<string>()!;\r\n    \r\n    constructor(props: ChoiceboxStateProps) {\r\n        this.#id = props.id;\r\n        this.#value = props.value;\r\n    };\r\n\r\n    get id() {\r\n        return this.#id;\r\n    };\r\n\r\n    set id(v) {\r\n        this.#id = v;\r\n    };\r\n\r\n    get value() {\r\n        return this.#value;\r\n    };\r\n\r\n    set value(v) {\r\n        this.#value = v;\r\n    };\r\n};\r\n\r\nconst [ getContext, setContext ] = createContext<ChoiceboxState>();\r\n\r\n\r\nexport function setupContext(props: ChoiceboxStateProps) {\r\n    return setContext(new ChoiceboxState(props));\r\n};\r\n\r\nexport { \r\n    type ChoiceboxState, \r\n    getContext \r\n};\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/choicebox/choicebox-context.svelte.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { RadioGroup } from \"$lib/components/ui/radio-group\";\r\n    import type { ComponentProps } from \"svelte\";\r\n    import { cn } from \"$UTILS$\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        value = $bindable(),\r\n        class: className,\r\n        children,\r\n        ...restProps\r\n    }: ComponentProps<typeof RadioGroup> = $props();\r\n</script>\r\n\r\n<RadioGroup \r\n    bind:ref \r\n    bind:value\r\n    class={cn(\"w-full\", className)} \r\n    {...restProps}    \r\n>\r\n    {@render children?.()}\r\n</RadioGroup>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/choicebox/choicebox.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { RadioGroupItem } from \"$lib/components/ui/radio-group\";\r\n    import type { ComponentProps } from \"svelte\";\r\n    import { getContext } from \"./choicebox-context.svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        ...restProps\r\n    }: Partial<ComponentProps<typeof RadioGroupItem>> = $props();\r\n\r\n    const ctx = getContext();\r\n</script>\r\n\r\n<RadioGroupItem {...restProps} value={ctx.value} />\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/choicebox/choicebox-indicator.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import * as Field from \"$lib/components/ui/field\";\r\n    import type { ComponentProps } from \"svelte\";\r\n    import { setupContext } from \"./choicebox-context.svelte\";\r\n\r\n    let {\r\n        id,\r\n        value,\r\n        class: className,\r\n        children,\r\n    }: Partial<ComponentProps<typeof Field.Field>> & {\r\n        id?: string;\r\n        value: string;\r\n    } = $props();\r\n\r\n    const ctx = setupContext({ id, value });\r\n</script>\r\n\r\n<Field.Label for={id}>\r\n    <Field.Field class={className} orientation=\"horizontal\">\r\n        {@render children?.()}\r\n    </Field.Field>\r\n</Field.Label>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/choicebox/choicebox-item.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { FieldDescription } from \"$lib/components/ui/field\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: ComponentProps<typeof FieldDescription> = $props();\r\n</script>\r\n\r\n<FieldDescription \r\n    bind:ref    \r\n    class={className} \r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</FieldDescription>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/choicebox/choicebox-item-description.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { FieldContent } from \"$lib/components/ui/field\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: ComponentProps<typeof FieldContent> = $props();\r\n</script>\r\n\r\n<FieldContent \r\n    bind:ref\r\n    class={className} \r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</FieldContent>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/choicebox/choicebox-item-header.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\r\n</script>\r\n\r\n<span\r\n    bind:this={ref}\r\n    class={cn(\"font-normal text-muted-foreground text-xs\", className)}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</span>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/choicebox/choicebox-item-subtitle.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { FieldTitle } from \"$lib/components/ui/field\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: ComponentProps<typeof FieldTitle> = $props();\r\n</script>\r\n\r\n<FieldTitle \r\n    bind:ref\r\n    class={className} \r\n    {...restProps} \r\n>\r\n    {@render children?.()}\r\n</FieldTitle>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/choicebox/choicebox-item-title.svelte"
+		},
+		{
+			"content": "import Choicebox from \"./choicebox.svelte\";\r\nimport ChoiceboxIndicator from \"./choicebox-indicator.svelte\";\r\nimport ChoiceboxItem from \"./choicebox-item.svelte\";\r\nimport ChoiceboxItemDescription from \"./choicebox-item-description.svelte\";\r\nimport ChoiceboxItemHeader from \"./choicebox-item-header.svelte\";\r\nimport ChoiceboxItemSubtitle from \"./choicebox-item-subtitle.svelte\";\r\nimport ChoiceboxItemTitle from \"./choicebox-item-title.svelte\";\r\n\r\nexport {\r\n    Choicebox,\r\n    ChoiceboxIndicator,\r\n    ChoiceboxItem,\r\n    ChoiceboxItemDescription,\r\n    ChoiceboxItemHeader,\r\n    ChoiceboxItemSubtitle,\r\n    ChoiceboxItemTitle,\r\n\r\n    Choicebox as Root,\r\n    ChoiceboxIndicator as Indicator,\r\n    ChoiceboxItem as Item,\r\n    ChoiceboxItemDescription as ItemDescription,\r\n    ChoiceboxItemHeader as ItemHeader,\r\n    ChoiceboxItemSubtitle as ItemSubtitle,\r\n    ChoiceboxItemTitle as ItemTitle\r\n};\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/choicebox/index.ts"
+		}
+	]
+}

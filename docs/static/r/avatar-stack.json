@@ -1,0 +1,27 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "avatar-stack",
+	"title": "Avatar Stack",
+	"type": "registry:ui",
+	"description": "Avatar Stack is a component that allows you to stack and overlap avatars.",
+	"registryDependencies": [
+		"avatar"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        animate = false,\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\r\n        animate?: boolean;\r\n    } = $props();\r\n</script>\r\n\r\n<div\r\n    bind:this={ref}\r\n    class={cn(\r\n        \"-space-x-1 flex items-center\",\r\n        animate && \"hover:space-x-0 [&>*]:transition-all\",\r\n        className\r\n    )}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</div>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/avatar-stack/avatar-stack.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        size = 40,\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\r\n        size?: number;\r\n    } = $props();\r\n\r\n    // TODO the inline style below needs work\r\n</script>\r\n\r\n<div\r\n    bind:this={ref}\r\n    class={cn(\r\n        \"size-full shrink-0 overflow-hidden rounded-full\",\r\n        `[&_[data-slot=\"avatar\"]]:size-full`,\r\n        \"not-first:mask-radial-from-transparent not-first:mask-radial-to-white mask-circle\",\r\n        className\r\n    )}\r\n    style=\"width: {size}px; height: {size}px; --tw-mask-radial-from-position: 99%; --tw-mask-radial-to-position: 100%; --tw-mask-radial-size: {size / 2}px; --tw-mask-radial-position: -{size / 4 + size / 10}px 50%;\"\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</div>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui//avatar-stack/avatar-stack-avatar.svelte"
+		},
+		{
+			"content": "import AvatarStack from \"./avatar-stack.svelte\";\r\nimport AvatarStackAvatar from \"./avatar-stack-avatar.svelte\";\r\n\r\nexport {\r\n    AvatarStack,\r\n    AvatarStackAvatar,\r\n    \r\n    AvatarStack as Root,\r\n    AvatarStackAvatar as Avatar\r\n};\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/avatar-stack/index.ts"
+		}
+	]
+}
