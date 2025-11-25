@@ -2,7 +2,7 @@
 
 Svelte port of kibo-ui
 
-Contributors are welcome! Especially when it comes to the registry.
+Contributors are welcome!
 
 
 
@@ -48,14 +48,14 @@ __Finance__
 
 __Social__
 
-- [ ] Stories
+- [x] Stories
 - [ ] Reel
 - [ ] Video Player
 
 __Callouts__
 
 - [x] Announcement
-- [ ] Banner
+- [x] Banner
 
 __Styling__
 
@@ -69,7 +69,7 @@ __Other__
 - [ ] Dialog Stack
 - [ ] Editor
 - [ ] Glimpse
-- [ ] Marquee
+- [x] Marquee
 - [x] Pill
 - [x] QR Code
 - [ ] Rating

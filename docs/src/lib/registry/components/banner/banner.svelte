@@ -1,11 +1,11 @@
 <script lang="ts">
     import type { HTMLAttributes } from "svelte/elements";
     import { cn, type WithElementRef } from "$lib/utils.js";
+    import { setupContext } from "./banner-context.svelte";
 
     let {
         ref = $bindable(null),
-        visible,
-        defaultVisible = true,
+        visible = $bindable(true),
         onClose,
         inset,
         class: className,
@@ -13,17 +13,14 @@
         ...restProps
     }: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
         visible?: boolean;
-        defaultVisible?: boolean;
         onClose?: () => void;
         inset?: boolean;
     } = $props();
 
-    // TODO setup context here
-    let show = $derived(visible);
-
+    const ctx = setupContext(visible);
 </script>
 
-{#if show}
+{#if ctx.show}
     <div
         class={cn(
             "flex w-full items-center justify-between gap-2 bg-primary px-4 py-2 text-primary-foreground",

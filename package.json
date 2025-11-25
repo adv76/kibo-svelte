@@ -1,6 +1,7 @@
 {
     "scripts": {
         "dev": "pnpm -F docs dev",
-        "build": "pnpm -F docs build"
+        "build": "pnpm -F docs build",
+        "registry:build": "pnpm -F docs registry:build"
     }
 }

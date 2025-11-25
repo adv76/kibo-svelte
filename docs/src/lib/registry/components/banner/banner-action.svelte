@@ -7,6 +7,7 @@
         variant = "outline",
         size = "sm",
         class: className,
+        children,
         ...restProps
     }: ButtonProps = $props();
 </script>
@@ -20,4 +21,6 @@
     {size}
     {variant}
     {...restProps}
-/>
+>
+    {@render children?.()}
+</Button>

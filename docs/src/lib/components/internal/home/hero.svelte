@@ -1,46 +1,45 @@
 <script lang="ts">
-    // import {
-    //     SiLucide,
-    //     SiRadixui,
-    //     SiReact,
-    //     SiTailwindcss,
-    //     SiTypescript,
-    // } from "@icons-pack/react-simple-icons";
+    import {
+        SiLucide,
+        SiRadixui,
+        SiSvelte,
+        SiTailwindcss,
+        SiTypescript,
+    } from "@icons-pack/svelte-simple-icons";
     import { resolve } from "$app/paths";
-import { Button } from "$lib/components/ui/button";
+    import { Button } from "$lib/components/ui/button";
     import * as Tooltip from "$lib/components/ui/tooltip";
     //import { DemoVideo } from "../demo-video";
     //import { GitHubButton } from "../github-button";
     import shadcn from "./shadcn.jpg";
 
-    // const icons = [
-    //     {
-    //         icon: SiReact,
-    //         name: "React",
-    //         color: "#087ea4",
-    //     },
-    //     {
-    //         icon: SiTypescript,
-    //         name: "TypeScript",
-    //         color: "#3178c6",
-    //     },
-    //     {
-    //         icon: SiTailwindcss,
-    //         name: "Tailwind CSS",
-    //         color: "#00bcff",
-    //     },
-    //     {
-    //         icon: SiLucide,
-    //         name: "Lucide",
-    //         color: "#f67373",
-    //     },
-    //     {
-    //         icon: SiRadixui,
-    //         name: "Radix UI",
-    //         color: "#000000",
-    //     },
-    // ];
-
+    const icons = [
+        {
+            icon: SiSvelte,
+            name: "Svelte",
+            color: "#ff3e00",
+        },
+        {
+            icon: SiTypescript,
+            name: "TypeScript",
+            color: "#3178c6",
+        },
+        {
+            icon: SiTailwindcss,
+            name: "Tailwind CSS",
+            color: "#00bcff",
+        },
+        {
+            icon: SiLucide,
+            name: "Lucide",
+            color: "#f67373",
+        },
+        {
+            icon: SiRadixui,
+            name: "Radix UI",
+            color: "#000000",
+        },
+    ];
 </script>
 
 <section
@@ -70,24 +69,22 @@ import { Button } from "$lib/components/ui/button";
                 </div>
                 components built with
                 <div class="-space-x-2 -translate-y-1.5 md:-translate-y-2.5 inline-flex items-center justify-center">
-                    <!-- {icons.map((icon, index) => (
-                    <Tooltip key={icon.name}>
-                        <TooltipTrigger asChild>
-                        <div
-                            class="inline-flex size-8 items-center justify-center rounded-full text-white sm:size-10 md:size-12 lg:size-14"
-                            style={{
-                            backgroundColor: icon.color,
-                            maskImage: index
-                                ? "radial-gradient(circle 28px at -17px 50%, transparent 99%, white 100%)"
-                                : "none",
-                            }}
-                        >
-                            <icon.icon class="size-3 sm:size-4 md:size-5 lg:size-6" />
-                        </div>
-                        </TooltipTrigger>
-                        <TooltipContent>{icon.name}</TooltipContent>
-                    </Tooltip>
-                    ))} -->
+                    {#each icons as icon, index(icon.name)}
+                        <Tooltip.Root>
+                            <Tooltip.Trigger>
+                                {#snippet child({ props })}
+                                    <div
+                                        class="inline-flex size-8 items-center justify-center rounded-full text-white sm:size-10 md:size-12 lg:size-14"
+                                        style="background-color: {icon.color}; mask-image: {index ? "radial-gradient(circle 28px at -17px 50%, transparent 99%, white 100%)" : "none"}"
+                                        {...props}
+                                    >
+                                        <icon.icon class="size-3 sm:size-4 md:size-5 lg:size-6" />
+                                    </div>
+                                {/snippet}
+                            </Tooltip.Trigger>
+                            <Tooltip.Content>{icon.name}</Tooltip.Content>
+                        </Tooltip.Root>
+                    {/each}
                 </div>
             </h1>
             <div class="mx-auto max-w-4xl text-center">

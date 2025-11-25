@@ -2,16 +2,24 @@
     import { Button, type ButtonProps } from "$lib/components/ui/button/";
     import { cn } from "$lib/utils";
     import { XIcon } from "@lucide/svelte"
+    import { getContext } from "./banner-context.svelte";
 
     let {
         ref = $bindable(null),
         variant = "ghost",
         size = "icon",
         class: className,
+        onclick,
         ...restProps
     }: ButtonProps = $props();
 
-    // Todo add context for closing
+    const ctx = getContext();
+
+    // ts shut up plz
+    function handleClick(e: any) {
+        ctx.show = false;
+        onclick?.(e);
+    }
 </script>
 
 <Button
@@ -23,6 +31,7 @@
     {size}
     {variant}
     {...restProps}
+    onclick={handleClick}
 >
     <XIcon size={18} />
 </Button>
