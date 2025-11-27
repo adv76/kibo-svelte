@@ -1,0 +1,32 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "marquee",
+	"title": "Marquee",
+	"type": "registry:ui",
+	"description": "Marquees are a great way to show a list of items in a horizontal scrolling motion.",
+	"dependencies": [
+		"@selemondev/svelte-marquee"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\r\n</script>\r\n\r\n<div\r\n    bind:this={ref}\r\n    class={cn(\"relative w-full overflow-hidden\", className)}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</div>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/marquee/marquee.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { Marquee } from \"@selemondev/svelte-marquee\";\r\n    import \"@selemondev/svelte-marquee/dist/style.css\";\r\n    import type { ComponentProps, Snippet } from \"svelte\";\r\n\r\n    let {\r\n        class: className = \"\",\r\n        pauseOnHover = true,\r\n        children,\r\n        ...restProps\r\n    }: ComponentProps<typeof Marquee> & {\r\n        children?: Snippet;\r\n    } = $props();\r\n</script>\r\n\r\n<Marquee\r\n    class={className}\r\n    {pauseOnHover}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</Marquee>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/marquee/marquee-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\r\n</script>\r\n\r\n<div\r\n    bind:this={ref}\r\n    class={cn(\"mx-2 flex-shrink-0 object-contain\", className)}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</div>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/marquee/marquee-item.svelte"
+		},
+		{
+			"content": "import Marquee from \"./marquee.svelte\";\r\nimport MarqueeContent from \"./marquee-content.svelte\";\r\nimport MarqueeItem from \"./marquee-item.svelte\";\r\n\r\nexport {\r\n    Marquee,\r\n    MarqueeContent,\r\n    MarqueeItem,\r\n\r\n    Marquee as Root,\r\n    MarqueeContent as Content,\r\n    MarqueeItem as Item\r\n};\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/marquee/index.ts"
+		}
+	]
+}

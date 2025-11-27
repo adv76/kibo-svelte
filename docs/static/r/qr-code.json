@@ -1,0 +1,23 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "qr-code",
+	"title": "QR Code",
+	"type": "registry:ui",
+	"description": "QR Code is a component that generates a QR code from a string.",
+	"dependencies": [
+		"culori",
+		"qrcode"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn } from \"$UTILS$.js\";\r\n    import QR from \"qrcode\";\r\n    import { formatHex, oklch } from \"culori\";\r\n    import { untrack } from \"svelte\";\r\n\r\n\r\n    let {\r\n        data,\r\n        foreground,\r\n        background,\r\n        robustness = \"M\",\r\n        class: className,\r\n        ...restProps\r\n    }: HTMLAttributes<HTMLDivElement> & {\r\n        data: string;\r\n        foreground?: string;\r\n        background?: string;\r\n        robustness?: \"L\" | \"M\" | \"Q\" | \"H\";\r\n    } = $props();\r\n\r\n    const oklchRegex = /oklch\\(([0-9.]+)\\s+([0-9.]+)\\s+([0-9.]+)\\)/;\r\n\r\n    const getOklch = (color: string, fallback: [number, number, number]) => {\r\n        const oklchMatch = color.match(oklchRegex);\r\n\r\n        if (!oklchMatch) {\r\n            return { l: fallback[0], c: fallback[1], h: fallback[2] };\r\n        }\r\n\r\n        return {\r\n            l: Number.parseFloat(oklchMatch[1]),\r\n            c: Number.parseFloat(oklchMatch[2]),\r\n            h: Number.parseFloat(oklchMatch[3]),\r\n        };\r\n    };\r\n\r\n    const generateQRSVG = async (text: string, ec: \"L\" | \"M\" | \"Q\" | \"H\", fg?: string, bg?: string) => {\r\n        try {\r\n            const styles = getComputedStyle(document.documentElement);\r\n            const foregroundColor = fg ?? styles.getPropertyValue(\"--foreground\");\r\n            const backgroundColor = bg ?? styles.getPropertyValue(\"--background\");\r\n\r\n            const foregroundOklch = getOklch(foregroundColor, [0.21, 0.006, 285.885]);\r\n            const backgroundOklch = getOklch(backgroundColor, [0.985, 0, 0]);\r\n\r\n            return await QR.toString(text, {\r\n                type: \"svg\",\r\n                color: {\r\n                    dark: formatHex(oklch({ mode: \"oklch\", ...foregroundOklch })),\r\n                    light: formatHex(oklch({ mode: \"oklch\", ...backgroundOklch })),\r\n                },\r\n                width: 200,\r\n                errorCorrectionLevel: ec,\r\n                margin: 0,\r\n            });\r\n        } catch (err) {\r\n            console.error(err);\r\n        }\r\n    };\r\n\r\n    let svgString = $state<string>();\r\n\r\n    $effect(() => {\r\n        data;\r\n        foreground;\r\n        background;\r\n        robustness;\r\n\r\n        untrack(() => {\r\n            generateQRSVG(data, robustness, foreground, background).then((svg) => svgString = svg);\r\n        });\r\n    });\r\n</script>\r\n\r\n<div\r\n    class={cn(\"size-full\", \"[&_svg]:size-full\", className)}\r\n    {...restProps}\r\n>\r\n    {#if svgString}\r\n        {@html svgString}\r\n    {/if}\r\n</div>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/qr-code/qr-code.svelte"
+		},
+		{
+			"content": "import QRCode from \"./qr-code.svelte\";\r\n\r\nexport {\r\n    QRCode\r\n};\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/qr-code/index.ts"
+		}
+	]
+}

@@ -1,4 +1,4 @@
-import QRCode from "./qrcode.svelte";
+import QRCode from "./qr-code.svelte";
 
 export {
     QRCode

@@ -1,0 +1,39 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "cursor",
+	"title": "Cursor",
+	"type": "registry:ui",
+	"description": "A cursor component, great for realtime interactive applications.",
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\r\n</script>\r\n\r\n<span\r\n    bind:this={ref}\r\n    class={cn(\"pointer-events-none relative select-none\", className)}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</span>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/cursor/cursor.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\r\n</script>\r\n\r\n<span\r\n    bind:this={ref}\r\n    class={cn(\r\n        \"relative ml-3.5 flex flex-col whitespace-nowrap rounded-xl py-1 pr-3 pl-2.5 text-xs\",\r\n        // Rules below only apply when there is more than one child\r\n        \"[&>:has(:nth-child(2))]:rounded-tl [&>:not(:only-child):first-child]:opacity-70\", \r\n        \"bg-secondary text-foreground\",\r\n        className\r\n    )}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</span>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/cursor/cursor-body.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\r\n</script>\r\n\r\n<span \r\n    bind:this={ref}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</span>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/cursor/cursor-message.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\r\n</script>\r\n\r\n<span \r\n    bind:this={ref}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</span>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/cursor/cursor-name.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<SVGElement>> = $props();\r\n</script>\r\n\r\n<svg\r\n    aria-hidden=\"true\"\r\n    class={cn(\"size-3.5\", className)}\r\n    fill=\"none\"\r\n    focusable=\"false\"\r\n    height=\"20\"\r\n    viewBox=\"0 0 20 20\"\r\n    width=\"20\"\r\n    xmlns=\"http://www.w3.org/2000/svg\"\r\n    {...restProps}\r\n>\r\n    <path\r\n        d=\"M19.438 6.716 1.115.05A.832.832 0 0 0 .05 1.116L6.712 19.45a.834.834 0 0 0 1.557.025l3.198-8 7.995-3.2a.833.833 0 0 0 0-1.559h-.024Z\"\r\n        fill=\"currentColor\"\r\n    />\r\n</svg>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/cursor/cursor-pointer.svelte"
+		},
+		{
+			"content": "import Cursor from \"./cursor.svelte\";\r\nimport CursorBody from \"./cursor-body.svelte\";\r\nimport CursorMessage from \"./cursor-message.svelte\";\r\nimport CursorName from \"./cursor-name.svelte\";\r\nimport CursorPointer from \"./cursor-pointer.svelte\";\r\n\r\nexport {\r\n    Cursor,\r\n    CursorBody,\r\n    CursorMessage,\r\n    CursorName,\r\n    CursorPointer,\r\n\r\n    Cursor as Root,\r\n    CursorBody as Body,\r\n    CursorMessage as Message,\r\n    CursorName as Name,\r\n    CursorPointer as Pointer\r\n};\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/cursor/index.ts"
+		}
+	]
+}

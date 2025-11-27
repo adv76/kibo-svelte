@@ -64,6 +64,51 @@
             ]
         },
         {
+            "name": "banner",
+            "type": "registry:ui",
+            "title": "Banner",
+            "description": "A banner is a full-width component that can be used to show a message and action to the user.",
+            "devDependencies": ["@lucide/svelte"],
+            "registryDependencies": ["button"],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/banner/banner.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/banner/banner.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/banner/banner-action.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/banner/banner-action.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/banner/banner-close.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/banner/banner-close.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/banner/banner-context.svelte.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/banner/banner-context.svelte.ts"
+                },
+                {
+                    "path": "src/lib/registry/components/banner/banner-icon.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/banner/banner-icon.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/banner/banner-title.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/banner/banner-title.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/banner/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/banner/index.ts"
+                }
+            ]
+        },
+        {
             "name": "choicebox",
             "type": "registry:ui",
             "title": "Choicebox",
@@ -214,6 +259,483 @@
                     "path": "src/lib/registry/components/code-block/types.ts",
                     "type": "registry:file",
                     "target": "../kibo-ui/code-block/types.ts"
+                }
+            ]
+        },
+        {
+            "name": "color-picker",
+            "type": "registry:ui",
+            "title": "Color Picker",
+            "description": "Allows users to select a color. Modeled after the color picker in Figma.",
+            "dependencies": ["color"],
+            "devDependencies": ["bits-ui", "@lucide/svelte"],
+            "registryDependencies": ["button", "input", "select"],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/color-picker/color-picker.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/color-picker/color-picker.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/color-picker/color-picker-alpha.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/color-picker/color-picker-alpha.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/color-picker/color-picker-context.svelte.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/color-picker/color-picker-context.svelte.ts"
+                },
+                {
+                    "path": "src/lib/registry/components/color-picker/color-picker-eye-dropper.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/color-picker/color-picker-eye-dropper.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/color-picker/color-picker-format.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/color-picker/color-picker-format.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/color-picker/color-picker-hue.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/color-picker/color-picker-hue.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/color-picker/color-picker-output.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/color-picker/color-picker-output.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/color-picker/color-picker-percentage-input.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/color-picker/color-picker-percentage-input.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/color-picker/color-picker-selection.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/color-picker/color-picker-selection.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/color-picker/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/color-picker/index.ts"
+                }
+            ]
+        },
+        {
+            "name": "contribution-graph",
+            "type": "registry:ui",
+            "title": "Contribution Graph",
+            "description": "A GitHub-style contribution graph component that displays activity levels over time.",
+            "dependencies": ["date-fns"],
+            "registryDependencies": ["button", "input", "select"],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/contribution-graph/contribution-graph.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/contribution-graph/contribution-graph.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/contribution-graph/contribution-graph-block.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/contribution-graph/contribution-graph-block.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/contribution-graph/contribution-graph-calendar.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/contribution-graph/contribution-graph-calendar.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/contribution-graph/contribution-graph-context.svelte.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/contribution-graph/contribution-graph-context.svelte.ts"
+                },
+                {
+                    "path": "src/lib/registry/components/contribution-graph/contribution-graph-footer.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/contribution-graph/contribution-graph-footer.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/contribution-graph/contribution-graph-legend.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/contribution-graph/contribution-graph-legend.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/contribution-graph/contribution-graph-total-count.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/contribution-graph/contribution-graph-total-count.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/contribution-graph/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/contribution-graph/index.ts"
+                },
+                {
+                    "path": "src/lib/registry/components/contribution-graph/types.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/contribution-graph/types.ts"
+                },
+                {
+                    "path": "src/lib/registry/components/contribution-graph/utils.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/contribution-graph/utils.ts"
+                }
+            ]
+        },
+        {
+            "name": "cursor",
+            "type": "registry:ui",
+            "title": "Cursor",
+            "description": "A cursor component, great for realtime interactive applications.",
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/cursor/cursor.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/cursor/cursor.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/cursor/cursor-body.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/cursor/cursor-body.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/cursor/cursor-message.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/cursor/cursor-message.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/cursor/cursor-name.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/cursor/cursor-name.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/cursor/cursor-pointer.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/cursor/cursor-pointer.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/cursor/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/cursor/index.ts"
+                }
+            ]
+        },
+        {
+            "name": "marquee",
+            "type": "registry:ui",
+            "title": "Marquee",
+            "description": "Marquees are a great way to show a list of items in a horizontal scrolling motion.",
+            "dependencies": ["@selemondev/svelte-marquee"],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/marquee/marquee.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/marquee/marquee.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/marquee/marquee-content.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/marquee/marquee-content.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/marquee/marquee-item.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/marquee/marquee-item.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/marquee/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/marquee/index.ts"
+                }
+            ]
+        },
+        {
+            "name": "pill",
+            "type": "registry:ui",
+            "title": "Pill",
+            "description": "A flexible badge component designed for a variety of use cases.",
+            "devDependencies": ["@lucide/svelte"],
+            "registryDependencies": ["avatar", "badge", "button"],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/pill/pill.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/pill/pill.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/pill/pill-avatar.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/pill/pill-avatar.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/pill/pill-avatar-group.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/pill/pill-avatar-group.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/pill/pill-button.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/pill/pill-button.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/pill/pill-delta.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/pill/pill-delta.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/pill/pill-icon.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/pill/pill-icon.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/pill/pill-indicator.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/pill/pill-indicator.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/pill/pill-status.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/pill/pill-status.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/pill/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/pill/index.ts"
+                }
+            ]
+        },
+        {
+            "name": "qr-code",
+            "type": "registry:ui",
+            "title": "QR Code",
+            "description": "QR Code is a component that generates a QR code from a string.",
+            "dependencies": ["culori", "qrcode"],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/qr-code/qr-code.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/qr-code/qr-code.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/qr-code/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/qr-code/index.ts"
+                }
+            ]
+        },
+        {
+            "name": "snippet",
+            "type": "registry:ui",
+            "title": "Snippet",
+            "description": "Snippet is a component that allows you to display and copy code in a tabbed interface.",
+            "registryDependencies": ["button", "tabs"],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/snippet/snippet.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/snippet/snippet.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/snippet/snippet-copy-button.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/snippet/snippet-copy-button.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/snippet/snippet-header.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/snippet/snippet-header.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/snippet/snippet-tabs-content.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/snippet/snippet-tabs-content.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/snippet/snippet-tabs-trigger.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/snippet/snippet-tabs-trigger.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/snippet/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/snippet/index.ts"
+                }
+            ]
+        },
+        {
+            "name": "spinner",
+            "type": "registry:ui",
+            "title": "Spinner",
+            "description": "The Spinner component expands the shadcn spinner component with additional variants.",
+            "devDependencies": ["@lucide/svelte"],
+            "registryDependencies": ["spinner"],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/spinner/spinner.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/spinner/spinner.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/spinner/spinners/bars.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/spinner/spinners/bars.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/spinner/spinners/circle-filled.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/spinner/spinners/circle-filled.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/spinner/spinners/ellipsis.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/spinner/spinners/ellipsis.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/spinner/spinners/infinite.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/spinner/spinners/infinite.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/spinner/spinners/pinwheel.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/spinner/spinners/pinwheel.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/spinner/spinners/ring.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/spinner/spinners/ring.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/spinner/spinners/throbber.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/spinner/spinners/throbber.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/spinner/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/spinner/index.ts"
+                },
+                {
+                    "path": "src/lib/registry/components/spinner/types.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/spinner/types.ts"
+                }
+            ]
+        },
+        {
+            "name": "status",
+            "type": "registry:ui",
+            "title": "Status",
+            "description": "Status components are used to display the uptime of a service.",
+            "registryDependencies": ["badge"],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/status/status.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/status/status.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/status/status-label.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/status/status-label.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/status/status-indicator.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/status/status-indicator.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/status/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/status/index.ts"
+                }
+            ]
+        },
+        {
+            "name": "stories",
+            "type": "registry:ui",
+            "title": "Stories",
+            "description": "A carousel of friends' stories, in video, image or avatar format.",
+            "registryDependencies": ["avatar", "carousel"],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/stories/stories.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/stories/stories.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/stories/stories-content.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/stories/stories-content.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/stories/story.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/stories/story.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/stories/story-author.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/stories/story-author.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/stories/story-author-image.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/stories/story-author-image.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/stories/story-author-name.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/stories/story-author-name.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/stories/story-image.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/stories/story-image.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/stories/story-overlay.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/stories/story-overlay.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/stories/story-title.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/stories/story-title.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/stories/story-video.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/stories/story-video.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/stories/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/stories/index.ts"
+                }
+            ]
+        },
+        {
+            "name": "theme-switcher",
+            "type": "registry:ui",
+            "title": "Theme Switcher",
+            "description": "A component to switch between light, dark and system theme.",
+            "devDependencies": ["@lucide/svelte"],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/theme-switcher/theme-switcher.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/theme-switcher/theme-switcher.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/theme-switcher/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/theme-switcher/index.ts"
                 }
             ]
         }

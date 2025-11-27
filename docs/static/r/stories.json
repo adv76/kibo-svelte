@@ -1,0 +1,68 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "stories",
+	"title": "Stories",
+	"type": "registry:ui",
+	"description": "A carousel of friends' stories, in video, image or avatar format.",
+	"registryDependencies": [
+		"avatar",
+		"carousel"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n    import { Carousel } from \"$lib/components/ui/carousel\";\r\n    import { cn } from \"$UTILS$\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        class: className,\r\n        opts,\r\n        children,\r\n        ...restProps\r\n    }: ComponentProps<typeof Carousel> = $props();\r\n</script>\r\n\r\n<Carousel\r\n    class={cn(\"w-full\", className)}\r\n    opts={{\r\n        align: \"start\",\r\n        loop: false,\r\n        dragFree: true,\r\n        ...opts,\r\n    }}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</Carousel>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/stories/stories.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { CarouselContent } from \"$lib/components/ui/carousel\";\r\n    import { cn } from \"$UTILS$\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        class: className,\r\n        children,\r\n        ...restProps\r\n    }: ComponentProps<typeof CarouselContent> = $props();\r\n</script>\r\n\r\n<CarouselContent class={cn(\"-ml-2 gap-2\", className)} {...restProps}>\r\n    {@render children?.()}\r\n</CarouselContent>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/stories/stories-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { CarouselItem } from \"$lib/components/ui/carousel\";\r\n    import { cn } from \"$UTILS$\";\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n    let {\r\n        class: className,\r\n        children,\r\n        ...restProps\r\n    }: HTMLAttributes<HTMLDivElement> = $props();\r\n</script>\r\n\r\n<CarouselItem class={cn(\"basis-0 pl-2 md:pl-4\", className)}>\r\n    <div\r\n        class={cn(\r\n            \"group relative overflow-hidden rounded-xl bg-muted/40\",\r\n            \"cursor-pointer transition-all duration-200\",\r\n            \"hover:scale-[1.02] hover:shadow-lg\",\r\n            \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2\",\r\n            className\r\n        )}\r\n        role=\"button\"\r\n        tabIndex={0}\r\n        {...restProps}\r\n    >\r\n        {@render children?.()}\r\n    </div>\r\n</CarouselItem>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/stories/story.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { cn } from \"$UTILS$\";\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n    let {\r\n        class: className,\r\n        children,\r\n        ...restProps\r\n    }: HTMLAttributes<HTMLDivElement> = $props();\r\n</script>\r\n\r\n<div\r\n    class={cn(\r\n        \"absolute right-0 bottom-0 left-0 z-10\",\r\n        \"p-3 text-white\",\r\n        className\r\n    )}\r\n    {...restProps}\r\n>\r\n    <div class=\"flex items-center gap-2\">\r\n        {@render children?.()}\r\n    </div>\r\n</div>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/stories/story-author.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import * as Avatar from \"$lib/components/ui/avatar\";\r\n    import { cn } from \"$UTILS$\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        src,\r\n        fallback,\r\n        name,\r\n        class: className,\r\n        ...restProps\r\n    }: ComponentProps<typeof Avatar.Root> & {\r\n        src?: string;\r\n        name?: string;\r\n        fallback?: string;\r\n    } = $props();\r\n</script>\r\n\r\n<Avatar.Root class={cn(\"size-6 border border-white/20\", className)} {...restProps}>\r\n    {#if src}\r\n        <Avatar.Image alt={name} src={src} />\r\n        <Avatar.Fallback class=\"bg-white/10 text-white text-xs\">\r\n            {fallback || name?.charAt(0)?.toUpperCase()}\r\n        </Avatar.Fallback>\r\n    {/if}\r\n</Avatar.Root>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/stories/story-author-image.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { cn } from \"$UTILS$\";\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n    let {\r\n        class: className,\r\n        children,\r\n        ...restProps\r\n    }: HTMLAttributes<HTMLSpanElement> = $props();\r\n</script>\r\n\r\n<span class={cn(\"truncate font-medium text-sm\", className)} {...restProps}>\r\n    {@render children?.()}\r\n</span>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/stories/story-author-name.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { cn } from \"$UTILS$\";\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n    let {\r\n        class: className,\r\n        src,\r\n        alt,\r\n        ...restProps\r\n    }: HTMLAttributes<HTMLImageElement> & {\r\n        src?: string;\r\n        alt: string;\r\n    } = $props();\r\n</script>\r\n\r\n<img\r\n    {src}\r\n    {alt}\r\n    class={cn(\r\n        \"absolute inset-0 h-full w-full object-cover\",\r\n        \"transition-opacity duration-200\",\r\n        \"group-hover:opacity-90\",\r\n        className\r\n    )}\r\n    {...restProps}\r\n/>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/stories/story-image.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { cn } from \"$UTILS$\";\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n    let {\r\n        class: className,\r\n        side = \"bottom\",\r\n        ...restProps\r\n    }: HTMLAttributes<HTMLDivElement> & {\r\n        side?: \"top\" | \"bottom\";\r\n    } = $props();\r\n\r\n    const positionClasses =\r\n        $derived(side === \"top\" ? \"top-0 bg-gradient-to-b\" : \"bottom-0 bg-gradient-to-t\");\r\n</script>\r\n\r\n<div\r\n    class={cn(\r\n        \"absolute right-0 left-0 h-10 from-black/20 to-transparent\",\r\n        positionClasses,\r\n        className\r\n    )}\r\n    {...restProps}\r\n></div>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/stories/story-overlay.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { cn } from \"$UTILS$\";\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n    let {\r\n        class: className,\r\n        children,\r\n        ...restProps\r\n    }: HTMLAttributes<HTMLDivElement> = $props();\r\n</script>\r\n\r\n<div\r\n    class={cn(\r\n        \"absolute top-0 right-0 left-0 z-10\",\r\n        \"p-3 text-white\",\r\n        className\r\n    )}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</div>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/stories/story-title.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { cn } from \"$UTILS$\";\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n    let {\r\n        class: className,\r\n        src,\r\n        ...restProps\r\n    }: HTMLAttributes<HTMLVideoElement> & {\r\n        src?: string;\r\n    } = $props();\r\n\r\n    const tRegex = /t=(\\d+(?:\\.\\d+)?)/;\r\n\r\n    let videoRef: HTMLVideoElement;\r\n    let initialTime = $derived.by(() => {\r\n        const currSrc = src ?? \"\";\r\n\r\n        if (typeof currSrc === \"string\") {\r\n            const hashIndex = currSrc.indexOf(\"#\");\r\n            if (hashIndex !== -1) {\r\n                const hash = currSrc.slice(hashIndex + 1);\r\n                // Look for t=number or t=start,end\r\n                const tMatch = hash.match(tRegex);\r\n                if (tMatch) {\r\n                    return Number.parseFloat(tMatch[1]);\r\n                }\r\n            }\r\n        }\r\n        return 0;\r\n    });\r\n\r\n    const handleMouseOver = () => {\r\n        videoRef?.play();\r\n    };\r\n\r\n    const handleMouseOut = () => {\r\n        if (videoRef) {\r\n            videoRef.pause();\r\n            videoRef.currentTime = initialTime;\r\n        }\r\n    };\r\n\r\n    const handleFocus = () => {\r\n        videoRef?.play();\r\n    };\r\n\r\n    const handleBlur = () => {\r\n        if (videoRef) {\r\n            videoRef.pause();\r\n            videoRef.currentTime = initialTime;\r\n        }\r\n    };\r\n</script>\r\n\r\n<video\r\n    bind:this={videoRef}\r\n    {src}\r\n    class={cn(\r\n    \"absolute inset-0 size-full object-cover\",\r\n    \"transition-opacity duration-200\",\r\n    \"group-hover:opacity-90\",\r\n    className\r\n    )}\r\n    loop\r\n    muted\r\n    onblur={handleBlur}\r\n    onfocus={handleFocus}\r\n    onmouseout={handleMouseOut}\r\n    onmouseover={handleMouseOver}\r\n    preload=\"metadata\"\r\n    tabIndex={0}\r\n    {...restProps}\r\n></video>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/stories/story-video.svelte"
+		},
+		{
+			"content": "import Stories from \"./stories.svelte\";\r\nimport StoriesContent from \"./stories-content.svelte\";\r\nimport Story from \"./story.svelte\";\r\nimport StoryAuthor from \"./story-author.svelte\";\r\nimport StoryAuthorImage from \"./story-author-image.svelte\";\r\nimport StoryAuthorName from \"./story-author-name.svelte\";\r\nimport StoryImage from \"./story-image.svelte\";\r\nimport StoryOverlay from \"./story-overlay.svelte\";\r\nimport StoryTitle from \"./story-title.svelte\";\r\nimport StoryVideo from \"./story-video.svelte\";\r\n\r\nexport {\r\n    Stories,\r\n    StoriesContent,\r\n    Story,\r\n    StoryAuthor,\r\n    StoryAuthorImage,\r\n    StoryAuthorName,\r\n    StoryImage,\r\n    StoryOverlay,\r\n    StoryTitle,\r\n    StoryVideo,\r\n\r\n    Stories as ContainerRoot,\r\n    StoriesContent as ContainerContent,\r\n    Story as Root,\r\n    StoryAuthor as Author,\r\n    StoryAuthorImage as AuthorImage,\r\n    StoryAuthorName as AuthorName,\r\n    StoryImage as Image,\r\n    StoryOverlay as Overlay,\r\n    StoryTitle as Title,\r\n    StoryVideo as Video\r\n};\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/stories/index.ts"
+		}
+	]
+}

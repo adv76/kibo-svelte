@@ -1,0 +1,65 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "spinner",
+	"title": "Spinner",
+	"type": "registry:ui",
+	"description": "The Spinner component expands the shadcn spinner component with additional variants.",
+	"devDependencies": [
+		"@lucide/svelte"
+	],
+	"registryDependencies": [
+		"spinner"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n    import Bars from \"./spinners/bars.svelte\";\r\n    import CircleFilled from \"./spinners/circle-filled.svelte\";\r\n    import Ellipsis from \"./spinners/ellipsis.svelte\";\r\n    import Infinite from \"./spinners/infinite.svelte\";\r\n    import Pinwheel from \"./spinners/pinwheel.svelte\";\r\n    import Ring from \"./spinners/ring.svelte\";\r\n    import Throbber from \"./spinners/throbber.svelte\";\r\n\r\n    import { Spinner as ShadcnSpinner } from \"$lib/components/ui/spinner\";\r\n    import { cn } from \"$UTILS$\";\r\n    import type { SpinnerProps } from \"./types\";\r\n\r\n    let {\r\n        variant,\r\n        ...restProps\r\n    }: SpinnerProps = $props();\r\n</script>\r\n\r\n{#if variant == \"throbber\"}\r\n    <Throbber {...restProps} />\r\n{:else if variant == \"pinwheel\"}\r\n    <Pinwheel {...restProps} />\r\n{:else if variant == \"circle-filled\"}\r\n    <CircleFilled {...restProps} />\r\n{:else if variant == \"ellipsis\"}\r\n    <Ellipsis {...restProps} />\r\n{:else if variant ==\"ring\"}\r\n    <Ring {...restProps} />\r\n{:else if variant == \"bars\"}\r\n    <Bars {...restProps} />\r\n{:else if variant == \"infinite\"}\r\n    <Infinite {...restProps} />\r\n{:else} <!-- Default -->\r\n    <ShadcnSpinner\r\n        class={cn(\"size-6\", restProps.className)}\r\n        {...restProps}\r\n    />\r\n{/if}\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/spinner/spinner.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { SpinnerVariantProps } from \"../types\";\r\n\r\n    let {\r\n        size = 24,\r\n        ...restProps\r\n    }: SpinnerVariantProps = $props();\r\n</script>\r\n\r\n<svg\r\n    height={size}\r\n    viewBox=\"0 0 24 24\"\r\n    width={size}\r\n    xmlns=\"http://www.w3.org/2000/svg\"\r\n    {...restProps}\r\n>\r\n    <title>Loading...</title>\r\n    <style>\r\n        .spinner-bar {\r\n            animation: spinner-bars-animation .8s linear infinite;\r\n            animation-delay: -.8s;\r\n        }\r\n        .spinner-bars-2 {\r\n            animation-delay: -.65s;\r\n        }\r\n        .spinner-bars-3 {\r\n            animation-delay: -0.5s;\r\n        }\r\n        @keyframes spinner-bars-animation {\r\n            0% {\r\n                y: 1px;\r\n                height: 22px;\r\n            }\r\n            93.75% {\r\n                y: 5px;\r\n                height: 14px;\r\n                opacity: 0.2;\r\n            }\r\n        }\r\n    </style>\r\n    <rect\r\n        class=\"spinner-bar\"\r\n        fill=\"currentColor\"\r\n        height=\"22\"\r\n        width=\"6\"\r\n        x=\"1\"\r\n        y=\"1\"\r\n    />\r\n    <rect\r\n        class=\"spinner-bar spinner-bars-2\"\r\n        fill=\"currentColor\"\r\n        height=\"22\"\r\n        width=\"6\"\r\n        x=\"9\"\r\n        y=\"1\"\r\n    />\r\n    <rect\r\n        class=\"spinner-bar spinner-bars-3\"\r\n        fill=\"currentColor\"\r\n        height=\"22\"\r\n        width=\"6\"\r\n        x=\"17\"\r\n        y=\"1\"\r\n    />\r\n</svg>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/spinner/spinners/bars.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { SpinnerVariantProps } from \"../types\";\r\n    import { cn } from \"$UTILS$\";\r\n    import { LoaderCircle } from \"@lucide/svelte\";\r\n\r\n    let {\r\n        class: className,\r\n        size = 24,\r\n        ...restProps\r\n    }: SpinnerVariantProps = $props();\r\n</script>\r\n\r\n<div class=\"relative\" style=\"width: {size}; height: {size};\">\r\n    <div class=\"absolute inset-0 rotate-180\">\r\n        <LoaderCircle\r\n            class={cn(\"animate-spin\", className, \"text-foreground opacity-20\")}\r\n            {size}\r\n            {...restProps}\r\n        />\r\n    </div>\r\n    <LoaderCircle\r\n        class={cn(\"relative animate-spin\", className)}\r\n        {size}\r\n        {...restProps}\r\n    />\r\n</div>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/spinner/spinners/circle-filled.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { SpinnerVariantProps } from \"../types\";\r\n\r\n    let {\r\n        size = 24,\r\n        ...restProps\r\n    }: SpinnerVariantProps = $props();\r\n</script>\r\n\r\n<svg\r\n    height={size}\r\n    viewBox=\"0 0 24 24\"\r\n    width={size}\r\n    xmlns=\"http://www.w3.org/2000/svg\"\r\n    {...restProps}\r\n>\r\n    <title>Loading...</title>\r\n    <circle cx=\"4\" cy=\"12\" fill=\"currentColor\" r=\"2\">\r\n        <animate\r\n            attributeName=\"cy\"\r\n            begin=\"0;ellipsis3.end+0.25s\"\r\n            calcMode=\"spline\"\r\n            dur=\"0.6s\"\r\n            id=\"ellipsis1\"\r\n            keySplines=\".33,.66,.66,1;.33,0,.66,.33\"\r\n            values=\"12;6;12\"\r\n        />\r\n    </circle>\r\n    <circle cx=\"12\" cy=\"12\" fill=\"currentColor\" r=\"2\">\r\n        <animate\r\n            attributeName=\"cy\"\r\n            begin=\"ellipsis1.begin+0.1s\"\r\n            calcMode=\"spline\"\r\n            dur=\"0.6s\"\r\n            keySplines=\".33,.66,.66,1;.33,0,.66,.33\"\r\n            values=\"12;6;12\"\r\n        />\r\n    </circle>\r\n    <circle cx=\"20\" cy=\"12\" fill=\"currentColor\" r=\"2\">\r\n        <animate\r\n            attributeName=\"cy\"\r\n            begin=\"ellipsis1.begin+0.2s\"\r\n            calcMode=\"spline\"\r\n            dur=\"0.6s\"\r\n            id=\"ellipsis3\"\r\n            keySplines=\".33,.66,.66,1;.33,0,.66,.33\"\r\n            values=\"12;6;12\"\r\n        />\r\n    </circle>\r\n</svg>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/spinner/spinners/ellipsis.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { SpinnerVariantProps } from \"../types\";\r\n\r\n    let {\r\n        size = 24,\r\n        ...restProps\r\n    }: SpinnerVariantProps = $props();\r\n</script>\r\n\r\n<svg\r\n    height={size}\r\n    preserveAspectRatio=\"xMidYMid\"\r\n    viewBox=\"0 0 100 100\"\r\n    width={size}\r\n    xmlns=\"http://www.w3.org/2000/svg\"\r\n    {...restProps}\r\n>\r\n    <title>Loading...</title>\r\n    <path\r\n        d=\"M24.3 30C11.4 30 5 43.3 5 50s6.4 20 19.3 20c19.3 0 32.1-40 51.4-40 C88.6 30 95 43.3 95 50s-6.4 20-19.3 20C56.4 70 43.6 30 24.3 30z\"\r\n        fill=\"none\"\r\n        stroke=\"currentColor\"\r\n        stroke-dasharray=\"205.271142578125 51.317785644531256\"\r\n        stroke-linecap=\"round\"\r\n        stroke-width=\"10\"\r\n        style=\"transform: scale(0.8); transform-origin: 50px 50px;\"\r\n    >\r\n        <animate\r\n            attributeName=\"stroke-dashoffset\"\r\n            dur=\"2s\"\r\n            keyTimes=\"0;1\"\r\n            repeatCount=\"indefinite\"\r\n            values=\"0;256.58892822265625\"\r\n        />\r\n    </path>\r\n</svg>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/spinner/spinners/infinite.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { SpinnerVariantProps } from \"../types\";\r\n    import { cn } from \"$UTILS$\";\r\n    import { LoaderPinwheel } from \"@lucide/svelte\";\r\n\r\n    let {\r\n        class: className,\r\n        ...restProps\r\n    }: SpinnerVariantProps = $props();\r\n</script>\r\n\r\n<LoaderPinwheel\r\n    class={cn(\"animate-spin\", className)} \r\n    {...restProps}\r\n/>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/spinner/spinners/pinwheel.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { SpinnerVariantProps } from \"../types\";\r\n\r\n    let {\r\n        size = 24,\r\n        ...restProps\r\n    }: SpinnerVariantProps = $props();\r\n</script>\r\n\r\n<svg\r\n    height={size}\r\n    stroke=\"currentColor\"\r\n    viewBox=\"0 0 44 44\"\r\n    width={size}\r\n    xmlns=\"http://www.w3.org/2000/svg\"\r\n    {...restProps}\r\n>\r\n    <title>Loading...</title>\r\n    <g fill=\"none\" fill-rule=\"evenodd\" stroke-width=\"2\">\r\n        <circle cx=\"22\" cy=\"22\" r=\"1\">\r\n            <animate\r\n                attributeName=\"r\"\r\n                begin=\"0s\"\r\n                calcMode=\"spline\"\r\n                dur=\"1.8s\"\r\n                keySplines=\"0.165, 0.84, 0.44, 1\"\r\n                keyTimes=\"0; 1\"\r\n                repeatCount=\"indefinite\"\r\n                values=\"1; 20\"\r\n            />\r\n            <animate\r\n                attributeName=\"stroke-opacity\"\r\n                begin=\"0s\"\r\n                calcMode=\"spline\"\r\n                dur=\"1.8s\"\r\n                keySplines=\"0.3, 0.61, 0.355, 1\"\r\n                keyTimes=\"0; 1\"\r\n                repeatCount=\"indefinite\"\r\n                values=\"1; 0\"\r\n            />\r\n        </circle>\r\n        <circle cx=\"22\" cy=\"22\" r=\"1\">\r\n            <animate\r\n                attributeName=\"r\"\r\n                begin=\"-0.9s\"\r\n                calcMode=\"spline\"\r\n                dur=\"1.8s\"\r\n                keySplines=\"0.165, 0.84, 0.44, 1\"\r\n                keyTimes=\"0; 1\"\r\n                repeatCount=\"indefinite\"\r\n                values=\"1; 20\"\r\n            />\r\n            <animate\r\n                attributeName=\"stroke-opacity\"\r\n                begin=\"-0.9s\"\r\n                calcMode=\"spline\"\r\n                dur=\"1.8s\"\r\n                keySplines=\"0.3, 0.61, 0.355, 1\"\r\n                keyTimes=\"0; 1\"\r\n                repeatCount=\"indefinite\"\r\n                values=\"1; 0\"\r\n            />\r\n        </circle>\r\n    </g>\r\n</svg>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/spinner/spinners/ring.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { SpinnerVariantProps } from \"../types\";\r\n    import { cn } from \"$UTILS$\";\r\n    import { Loader } from \"@lucide/svelte\";\r\n\r\n    let {\r\n        class: className,\r\n        ...restProps\r\n    }: SpinnerVariantProps = $props();\r\n</script>\r\n\r\n<Loader \r\n    class={cn(\"animate-spin\", className)} \r\n    {...restProps}\r\n/>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/spinner/spinners/throbber.svelte"
+		},
+		{
+			"content": "import Spinner from \"./spinner.svelte\";\r\n\r\nexport {\r\n    Spinner\r\n};\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/spinner/index.ts"
+		},
+		{
+			"content": "import type { IconProps } from \"@lucide/svelte\";\r\n\r\nexport type SpinnerProps = IconProps & {\r\n    variant?:\r\n        | \"default\"\r\n        | \"throbber\"\r\n        | \"pinwheel\"\r\n        | \"circle-filled\"\r\n        | \"ellipsis\"\r\n        | \"ring\"\r\n        | \"bars\"\r\n        | \"infinite\";\r\n};\r\n\r\nexport type SpinnerVariantProps = Omit<SpinnerProps, \"variant\">;\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/spinner/types.ts"
+		}
+	]
+}

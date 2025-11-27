@@ -1,0 +1,62 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "pill",
+	"title": "Pill",
+	"type": "registry:ui",
+	"description": "A flexible badge component designed for a variety of use cases.",
+	"devDependencies": [
+		"@lucide/svelte"
+	],
+	"registryDependencies": [
+		"avatar",
+		"badge",
+		"button"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n    import { Badge } from \"$lib/components/ui/badge\";\r\n    import { cn } from \"$UTILS$.js\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        variant = \"secondary\",\r\n        themed = false,\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: ComponentProps<typeof Badge> & {\r\n        themed?: boolean;\r\n    } = $props();\r\n</script>\r\n\r\n<Badge\r\n    bind:ref\r\n    class={cn(\"gap-2 rounded-full px-3 py-1.5 font-normal\", className)}\r\n    {variant}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</Badge>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/pill/pill.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import * as Avatar from \"$lib/components/ui/avatar\";\r\n    import { cn } from \"$UTILS$.js\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        fallback,\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: ComponentProps<typeof Avatar.Image> & {\r\n        fallback?: string;\r\n    } = $props();\r\n</script>\r\n\r\n<Avatar.Root \r\n    bind:ref \r\n    class={cn(\"-ml-1 h-4 w-4\", className)}\r\n>\r\n    <Avatar.Image {...restProps} />\r\n    <Avatar.Fallback>{fallback}</Avatar.Fallback>\r\n</Avatar.Root>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/pill/pill-avatar.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\r\n</script>\r\n\r\n<div\r\n    bind:this={ref}\r\n    class={cn(\r\n        \"-space-x-1 flex items-center\",\r\n        \"[&>*:not(:first-of-type)]:[mask-image:radial-gradient(circle_9px_at_-4px_50%,transparent_99%,white_100%)]\",\r\n        className\r\n    )}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</div>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/pill/pill-avatar-group.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { Button } from \"$lib/components/ui/button\";\r\n    import { cn } from \"$UTILS$.js\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: ComponentProps<typeof Button> = $props();\r\n</script>\r\n\r\n<Button\r\n    bind:ref\r\n    class={cn(\r\n        \"-my-2 -mr-2 size-6 rounded-full p-0.5 hover:bg-foreground/5\",\r\n        className\r\n    )}\r\n    size=\"icon\"\r\n    variant=\"ghost\"\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</Button>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/pill/pill-button.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { cn } from \"$UTILS$.js\";\r\n    import { Minus, ChevronUp, ChevronDown } from \"@lucide/svelte\";\r\n\r\n    let {\r\n        delta,\r\n        class: className,\r\n    }: {\r\n        delta: number;\r\n        class?: string;\r\n    } = $props();\r\n</script>\r\n\r\n{#if !delta}\r\n    <Minus class={cn(\"size-3 text-muted-foreground\", className)} />\r\n{:else if delta > 0}\r\n    <ChevronUp class={cn(\"size-3 text-emerald-500\", className)} />\r\n{:else}\r\n    <ChevronDown class={cn(\"size-3 text-rose-500\", className)} />\r\n{/if}\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/pill/pill-delta.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { cn } from \"$UTILS$.js\";\r\n    import type { Icon as LucideIcon } from \"@lucide/svelte\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        class: className,\r\n        icon: Icon,\r\n        ...restProps\r\n    }: ComponentProps<typeof LucideIcon> & {\r\n        icon: typeof LucideIcon;\r\n    } = $props();\r\n</script>\r\n\r\n<Icon\r\n    className={cn(\"size-3 text-muted-foreground\", className)}\r\n    size={12}\r\n    {...restProps}\r\n/>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/pill/pill-icon.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        variant = \"success\",\r\n        pulse = false,\r\n        class: className,\r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLSpanElement>> & {\r\n        variant?: \"success\" | \"error\" | \"warning\" | \"info\";\r\n        pulse?: boolean;\r\n    } = $props();\r\n</script>\r\n\r\n<span\r\n    bind:this={ref}\r\n    class=\"relative flex size-2\"\r\n    {...restProps}\r\n>\r\n    {#if pulse}\r\n        <span\r\n            class={cn(\r\n                \"absolute inline-flex h-full w-full animate-ping rounded-full opacity-75\",\r\n                variant === \"success\" && \"bg-emerald-400\",\r\n                variant === \"error\" && \"bg-rose-400\",\r\n                variant === \"warning\" && \"bg-amber-400\",\r\n                variant === \"info\" && \"bg-sky-400\"\r\n            )}\r\n        ></span>\r\n    {/if}\r\n\r\n    <span\r\n        class={cn(\r\n            \"relative inline-flex size-2 rounded-full\",\r\n            variant === \"success\" && \"bg-emerald-500\",\r\n            variant === \"error\" && \"bg-rose-500\",\r\n            variant === \"warning\" && \"bg-amber-500\",\r\n            variant === \"info\" && \"bg-sky-500\"\r\n        )}\r\n    ></span>\r\n</span>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/pill/pill-indicator.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\r\n</script>\r\n\r\n<div\r\n    bind:this={ref}\r\n    class={cn(\r\n        \"flex items-center gap-2 border-r pr-2 font-medium\",\r\n        className\r\n    )}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</div>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/pill/pill-status.svelte"
+		},
+		{
+			"content": "import Pill from \"./pill.svelte\";\r\nimport PillAvatarGroup from \"./pill-avatar-group.svelte\";\r\nimport PillAvatar from \"./pill-avatar.svelte\";\r\nimport PillButton from \"./pill-button.svelte\";\r\nimport PillDelta from \"./pill-delta.svelte\";\r\nimport PillIcon from \"./pill-icon.svelte\";\r\nimport PillIndicator from \"./pill-indicator.svelte\";\r\nimport PillStatus from \"./pill-status.svelte\";\r\n\r\nexport {\r\n    Pill,\r\n    PillAvatarGroup,\r\n    PillAvatar,\r\n    PillButton,\r\n    PillDelta,\r\n    PillIcon,\r\n    PillIndicator,\r\n    PillStatus,\r\n\r\n    Pill as Root,\r\n    PillAvatarGroup as AvatarGroup,\r\n    PillAvatar as Avatar,\r\n    PillButton as Button,\r\n    PillDelta as Delta,\r\n    PillIcon as Icon,\r\n    PillIndicator as Indicator,\r\n    PillStatus as Status\r\n};\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/pill/index.ts"
+		}
+	]
+}

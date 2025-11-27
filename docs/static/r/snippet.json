@@ -1,0 +1,46 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "snippet",
+	"title": "Snippet",
+	"type": "registry:ui",
+	"description": "Snippet is a component that allows you to display and copy code in a tabbed interface.",
+	"devDependencies": [
+		"@lucide/svelte@^0.544.0"
+	],
+	"registryDependencies": [
+		"button",
+		"tabs"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n    import { Tabs } from \"$lib/components/ui/tabs\";\r\n    import { cn } from \"$UTILS$.js\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        value = $bindable(),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: ComponentProps<typeof Tabs> & {\r\n    } = $props();\r\n</script>\r\n\r\n<Tabs\r\n    bind:ref\r\n    bind:value\r\n    class={cn(\r\n        \"group w-full gap-0 overflow-hidden rounded-md border\",\r\n      className\r\n    )}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</Tabs>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/snippet/snippet.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { Button } from \"$lib/components/ui/button\";\r\n    import { Check, Copy } from \"@lucide/svelte\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        value,\r\n        onCopy,\r\n        onError,\r\n        timeout = 2000,\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: ComponentProps<typeof Button> & {\r\n        value: string;\r\n        onCopy?: () => void;\r\n        onError?: (error: Error) => void;\r\n        timeout?: number;\r\n    } = $props();\r\n\r\n    let isCopied = $state(false);\r\n\r\n    const copyToClipboard = () => {\r\n        if (\r\n            typeof window === \"undefined\" ||\r\n            !navigator.clipboard.writeText ||\r\n            !value\r\n        ) {\r\n            return;\r\n        }\r\n\r\n        navigator.clipboard.writeText(value).then(() => {\r\n            isCopied = true;\r\n            onCopy?.();\r\n\r\n            setTimeout(() => isCopied = false, timeout);\r\n        }, onError);\r\n    };\r\n</script>\r\n  \r\n<Button\r\n    class=\"opacity-0 transition-opacity group-hover:opacity-100\"\r\n    onclick={copyToClipboard}\r\n    size=\"icon\"\r\n    variant=\"ghost\"\r\n    {...restProps}\r\n>\r\n    {#if children}\r\n        {@render children()}\r\n    {:else if isCopied}\r\n        <Check size={14} />\r\n    {:else}\r\n        <Copy size={14} />\r\n    {/if}\r\n</Button>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/snippet/snippet-copy-button.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();\r\n</script>\r\n\r\n<div\r\n    bind:this={ref}\r\n    class={cn(\r\n        \"flex flex-row items-center justify-between border-b bg-secondary p-1\",\r\n        className\r\n    )}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</div>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/snippet/snippet-header.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { TabsContent } from \"$lib/components/ui/tabs\";\r\n    import { cn } from \"$UTILS$.js\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: ComponentProps<typeof TabsContent> & {\r\n    } = $props();\r\n</script>\r\n\r\n<TabsContent\r\n    bind:ref\r\n    class={cn(\"mt-0 bg-background p-4 text-sm\", className)}\r\n    {...restProps}\r\n>\r\n    <pre class=\"truncate\">\r\n        {@render children?.()}\r\n    </pre>\r\n</TabsContent>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/snippet/snippet-tabs-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { TabsTrigger } from \"$lib/components/ui/tabs\";\r\n    import { cn } from \"$UTILS$.js\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: ComponentProps<typeof TabsTrigger> & {\r\n    } = $props();\r\n</script>\r\n\r\n<TabsTrigger\r\n    bind:ref\r\n    class={cn(\"gap-1.5\", className)} \r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</TabsTrigger>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/snippet/snippet-tabs-trigger.svelte"
+		},
+		{
+			"content": "import { TabsList } from \"$lib/components/ui/tabs\";\r\nimport Snippet from \"./snippet.svelte\";\r\nimport SnippetCopyButton from \"./snippet-copy-button.svelte\";\r\nimport SnippetHeader from \"./snippet-header.svelte\";\r\nimport SnippetTabsContent from \"./snippet-tabs-content.svelte\";\r\nimport SnippetTabsTrigger from \"./snippet-tabs-trigger.svelte\";\r\n\r\nexport {\r\n    Snippet,\r\n    SnippetCopyButton,\r\n    SnippetHeader,\r\n    SnippetTabsContent,\r\n    TabsList as SnippetTabsList,\r\n    SnippetTabsTrigger,\r\n\r\n    Snippet as Root,\r\n    SnippetCopyButton as CopyButton,\r\n    SnippetHeader as Header,\r\n    SnippetTabsContent as TabsContent,\r\n    TabsList,\r\n    SnippetTabsTrigger as TabsTrigger\r\n};\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/snippet/index.ts"
+		}
+	]
+}

@@ -20,6 +20,19 @@
 		"relativeUrl": "avatar-stack.json"
 	},
 	{
+		"name": "banner",
+		"title": "Banner",
+		"type": "registry:ui",
+		"description": "A banner is a full-width component that can be used to show a message and action to the user.",
+		"devDependencies": [
+			"@lucide/svelte"
+		],
+		"registryDependencies": [
+			"button"
+		],
+		"relativeUrl": "banner.json"
+	},
+	{
 		"name": "choicebox",
 		"title": "Choicebox",
 		"type": "registry:ui",
@@ -44,5 +57,141 @@
 			"select"
 		],
 		"relativeUrl": "code-block.json"
+	},
+	{
+		"name": "color-picker",
+		"title": "Color Picker",
+		"type": "registry:ui",
+		"description": "Allows users to select a color. Modeled after the color picker in Figma.",
+		"dependencies": [
+			"color"
+		],
+		"devDependencies": [
+			"bits-ui",
+			"@lucide/svelte"
+		],
+		"registryDependencies": [
+			"button",
+			"input",
+			"select"
+		],
+		"relativeUrl": "color-picker.json"
+	},
+	{
+		"name": "contribution-graph",
+		"title": "Contribution Graph",
+		"type": "registry:ui",
+		"description": "A GitHub-style contribution graph component that displays activity levels over time.",
+		"dependencies": [
+			"date-fns"
+		],
+		"registryDependencies": [
+			"button",
+			"input",
+			"select"
+		],
+		"relativeUrl": "contribution-graph.json"
+	},
+	{
+		"name": "cursor",
+		"title": "Cursor",
+		"type": "registry:ui",
+		"description": "A cursor component, great for realtime interactive applications.",
+		"registryDependencies": [],
+		"relativeUrl": "cursor.json"
+	},
+	{
+		"name": "marquee",
+		"title": "Marquee",
+		"type": "registry:ui",
+		"description": "Marquees are a great way to show a list of items in a horizontal scrolling motion.",
+		"dependencies": [
+			"@selemondev/svelte-marquee"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "marquee.json"
+	},
+	{
+		"name": "pill",
+		"title": "Pill",
+		"type": "registry:ui",
+		"description": "A flexible badge component designed for a variety of use cases.",
+		"devDependencies": [
+			"@lucide/svelte"
+		],
+		"registryDependencies": [
+			"avatar",
+			"badge",
+			"button"
+		],
+		"relativeUrl": "pill.json"
+	},
+	{
+		"name": "qr-code",
+		"title": "QR Code",
+		"type": "registry:ui",
+		"description": "QR Code is a component that generates a QR code from a string.",
+		"dependencies": [
+			"culori",
+			"qrcode"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "qr-code.json"
+	},
+	{
+		"name": "snippet",
+		"title": "Snippet",
+		"type": "registry:ui",
+		"description": "Snippet is a component that allows you to display and copy code in a tabbed interface.",
+		"registryDependencies": [
+			"button",
+			"tabs"
+		],
+		"relativeUrl": "snippet.json"
+	},
+	{
+		"name": "spinner",
+		"title": "Spinner",
+		"type": "registry:ui",
+		"description": "The Spinner component expands the shadcn spinner component with additional variants.",
+		"devDependencies": [
+			"@lucide/svelte"
+		],
+		"registryDependencies": [
+			"spinner"
+		],
+		"relativeUrl": "spinner.json"
+	},
+	{
+		"name": "status",
+		"title": "Status",
+		"type": "registry:ui",
+		"description": "Status components are used to display the uptime of a service.",
+		"registryDependencies": [
+			"badge"
+		],
+		"relativeUrl": "status.json"
+	},
+	{
+		"name": "stories",
+		"title": "Stories",
+		"type": "registry:ui",
+		"description": "A carousel of friends' stories, in video, image or avatar format.",
+		"registryDependencies": [
+			"avatar",
+			"carousel"
+		],
+		"relativeUrl": "stories.json"
+	},
+	{
+		"name": "theme-switcher",
+		"title": "Theme Switcher",
+		"type": "registry:ui",
+		"description": "A component to switch between light, dark and system theme.",
+		"devDependencies": [
+			"@lucide/svelte"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "theme-switcher.json"
 	}
 ]

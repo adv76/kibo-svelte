@@ -1,0 +1,32 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "status",
+	"title": "Status",
+	"type": "registry:ui",
+	"description": "Status components are used to display the uptime of a service.",
+	"registryDependencies": [
+		"badge"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n    import { Badge } from \"$lib/components/ui/badge\";\r\n    import { cn } from \"$UTILS$.js\";\r\n    import type { ComponentProps } from \"svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        status,\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: ComponentProps<typeof Badge> & {\r\n        status: \"online\" | \"offline\" | \"maintenance\" | \"degraded\";\r\n    } = $props();\r\n</script>\r\n\r\n<Badge\r\n    bind:ref\r\n    class={cn(\"flex items-center gap-2\", \"group\", status, className)}\r\n    variant=\"secondary\"\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</Badge>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/status/status.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\r\n</script>\r\n\r\n<span \r\n    bind:this={ref}\r\n    class={cn(\"text-muted-foreground\", className)} \r\n    {...restProps}\r\n>\r\n    {#if children}\r\n        {@render children()}\r\n    {:else}\r\n        <span class=\"hidden group-[.online]:block\">Online</span>\r\n        <span class=\"hidden group-[.offline]:block\">Offline</span>\r\n        <span class=\"hidden group-[.maintenance]:block\">Maintenance</span>\r\n        <span class=\"hidden group-[.degraded]:block\">Degraded</span>\r\n    {/if}\r\n</span>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/status/status-label.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLSpanElement>> = $props();\r\n</script>\r\n\r\n<span \r\n    bind:this={ref} \r\n    class=\"relative flex h-2 w-2\" \r\n    {...restProps}\r\n>\r\n    <span\r\n        class={cn(\r\n            \"absolute inline-flex h-full w-full animate-ping rounded-full opacity-75\",\r\n            \"group-[.online]:bg-emerald-500\",\r\n            \"group-[.offline]:bg-red-500\",\r\n            \"group-[.maintenance]:bg-blue-500\",\r\n            \"group-[.degraded]:bg-amber-500\"\r\n        )}\r\n    ></span>\r\n    <span\r\n        class={cn(\r\n            \"relative inline-flex h-2 w-2 rounded-full\",\r\n            \"group-[.online]:bg-emerald-500\",\r\n            \"group-[.offline]:bg-red-500\",\r\n            \"group-[.maintenance]:bg-blue-500\",\r\n            \"group-[.degraded]:bg-amber-500\"\r\n        )}\r\n    ></span>\r\n</span>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/status/status-indicator.svelte"
+		},
+		{
+			"content": "import Status from \"./status.svelte\";\r\nimport StatusIndicator from \"./status-indicator.svelte\";\r\nimport StatusLabel from \"./status-label.svelte\";\r\n\r\nexport {\r\n    Status,\r\n    StatusIndicator,\r\n    StatusLabel,\r\n\r\n    Status as Root,\r\n    StatusIndicator as Indicator,\r\n    StatusLabel as Label\r\n};\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/status/index.ts"
+		}
+	]
+}

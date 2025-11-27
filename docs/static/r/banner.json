@@ -1,0 +1,50 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "banner",
+	"title": "Banner",
+	"type": "registry:ui",
+	"description": "A banner is a full-width component that can be used to show a message and action to the user.",
+	"devDependencies": [
+		"@lucide/svelte"
+	],
+	"registryDependencies": [
+		"button"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n    import { setupContext } from \"./banner-context.svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        visible = $bindable(true),\r\n        onClose,\r\n        inset,\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\r\n        visible?: boolean;\r\n        onClose?: () => void;\r\n        inset?: boolean;\r\n    } = $props();\r\n\r\n    const ctx = setupContext(visible);\r\n</script>\r\n\r\n{#if ctx.show}\r\n    <div\r\n        class={cn(\r\n            \"flex w-full items-center justify-between gap-2 bg-primary px-4 py-2 text-primary-foreground\",\r\n            inset && \"rounded-lg\",\r\n            className\r\n        )}\r\n        {...restProps}\r\n    >\r\n        {@render children?.()}\r\n    </div>\r\n{/if}\r\n ",
+			"type": "registry:file",
+			"target": "../kibo-ui/banner/banner.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { Button, type ButtonProps } from \"$lib/components/ui/button\";\r\n    import { cn } from \"$UTILS$\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        variant = \"outline\",\r\n        size = \"sm\",\r\n        class: className,\r\n        children,\r\n        ...restProps\r\n    }: ButtonProps = $props();\r\n</script>\r\n\r\n<Button\r\n    bind:ref\r\n    class={cn(\r\n        \"shrink-0 bg-transparent hover:bg-background/10 hover:text-background\",\r\n        className\r\n    )}\r\n    {size}\r\n    {variant}\r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</Button>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/banner/banner-action.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import { Button, type ButtonProps } from \"$lib/components/ui/button/\";\r\n    import { cn } from \"$UTILS$\";\r\n    import { XIcon } from \"@lucide/svelte\"\r\n    import { getContext } from \"./banner-context.svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        variant = \"ghost\",\r\n        size = \"icon\",\r\n        class: className,\r\n        onclick,\r\n        ...restProps\r\n    }: ButtonProps = $props();\r\n\r\n    const ctx = getContext();\r\n\r\n    // ts shut up plz\r\n    function handleClick(e: any) {\r\n        ctx.show = false;\r\n        onclick?.(e);\r\n    }\r\n</script>\r\n\r\n<Button\r\n    bind:ref\r\n    class={cn(\r\n        \"shrink-0 bg-transparent hover:bg-background/10 hover:text-background\",\r\n        className\r\n    )}\r\n    {size}\r\n    {variant}\r\n    {...restProps}\r\n    onclick={handleClick}\r\n>\r\n    <XIcon size={18} />\r\n</Button>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/banner/banner-close.svelte"
+		},
+		{
+			"content": "import { createContext } from \"svelte\";\r\n\r\nclass BannerState {\r\n    #show = $state<boolean>();\r\n\r\n    constructor(show: boolean = true) {\r\n        this.#show = show;\r\n    };  \r\n\r\n    get show() {\r\n        return this.#show;\r\n    };\r\n\r\n    set show(v) {\r\n        this.#show = v;\r\n    };\r\n};\r\n\r\nconst [ getContext, setContext ] = createContext<BannerState>();\r\n\r\n\r\nexport function setupContext(show: boolean) {\r\n    return setContext(new BannerState(show));\r\n};\r\n\r\nexport { \r\n    getContext \r\n};\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/banner/banner-context.svelte.ts"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n    import type { Icon as LucideIcon } from \"@lucide/svelte\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        icon: Icon,\r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\r\n        icon: typeof LucideIcon;\r\n    } = $props();\r\n</script>\r\n\r\n<div\r\n    bind:this={ref}\r\n    class={cn(\r\n        \"rounded-full border border-background/20 bg-background/10 p-1 shadow-sm\",\r\n        className\r\n    )}\r\n    {...restProps}\r\n>\r\n    <Icon size={16} />\r\n</div>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/banner/banner-icon.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { cn, type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        class: className,\r\n        children,   \r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLParagraphElement>> = $props();\r\n</script>\r\n\r\n<p \r\n    bind:this={ref} \r\n    class={cn(\"flex-1 text-sm\", className)} \r\n    {...restProps}\r\n>\r\n    {@render children?.()}\r\n</p>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/banner/banner-title.svelte"
+		},
+		{
+			"content": "import Banner from \"./banner.svelte\";\r\nimport BannerAction from \"./banner-action.svelte\";\r\nimport BannerClose from \"./banner-close.svelte\";\r\nimport BannerIcon from \"./banner-icon.svelte\";\r\nimport BannerTitle from \"./banner-title.svelte\";\r\n\r\nexport {\r\n    Banner,\r\n    BannerAction,\r\n    BannerClose,\r\n    BannerIcon,\r\n    BannerTitle,\r\n\r\n    Banner as Root,\r\n    BannerAction as Action,\r\n    BannerClose as Close,\r\n    BannerIcon as Icon,\r\n    BannerTitle as Title\r\n};\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/banner/index.ts"
+		}
+	]
+}

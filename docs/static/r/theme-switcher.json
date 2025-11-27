@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "theme-switcher",
+	"title": "Theme Switcher",
+	"type": "registry:ui",
+	"description": "A component to switch between light, dark and system theme.",
+	"devDependencies": [
+		"@lucide/svelte"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n    import { Monitor, Moon, Sun } from \"@lucide/svelte\";\r\n    import { cn } from \"$UTILS$\";\r\n    import { onMount, untrack } from \"svelte\";\r\n    import { fly } from \"svelte/transition\";\r\n    import { cubicOut } from \"svelte/easing\";\r\n\r\n    const themes = [\r\n        {\r\n            key: \"system\",\r\n            icon: Monitor,\r\n            label: \"System theme\",\r\n        },\r\n        {\r\n            key: \"light\",\r\n            icon: Sun,\r\n            label: \"Light theme\",\r\n        },\r\n        {\r\n            key: \"dark\",\r\n            icon: Moon,\r\n            label: \"Dark theme\",\r\n        },\r\n    ];\r\n\r\n    type ThemeSwitcherProps = {\r\n        value?: \"light\" | \"dark\" | \"system\";\r\n        onChange?: (theme: \"light\" | \"dark\" | \"system\") => void;\r\n        className?: string;\r\n    };\r\n\r\n    let {\r\n        value = $bindable(\"system\"),\r\n        onChange,\r\n        className\r\n    }: ThemeSwitcherProps = $props();\r\n\r\n    let isMounted = $state(false);\r\n\r\n    onMount(() => {\r\n        isMounted = true;\r\n    });\r\n    \r\n    $effect(() => {\r\n        value;\r\n        untrack(() => {\r\n            onChange?.(value);\r\n        });\r\n    });\r\n\r\n    const setTheme = (theme: \"light\" | \"dark\" | \"system\") => value = theme;\r\n</script>\r\n\r\n{#if isMounted}\r\n    <div\r\n        class={cn(\r\n            \"relative isolate flex h-8 rounded-full bg-background p-1 ring-1 ring-border\",\r\n            className\r\n        )}\r\n    >\r\n        {#each themes as theme(theme.key)}\r\n            {@const isActive = theme.key == value}\r\n            {@const Icon = theme.icon}\r\n\r\n            <button\r\n                aria-label={theme.label}\r\n                class=\"relative h-6 w-6 rounded-full\"\r\n                onclick={() => setTheme(theme.key as \"light\" | \"dark\" | \"system\")}\r\n                type=\"button\"\r\n            >\r\n                {#if isActive}\r\n                    <div\r\n                        class=\"absolute inset-0 rounded-full bg-secondary\"\r\n                        transition:fly={{ duration: 500, easing: cubicOut }}\r\n                    >\r\n                    </div>\r\n                {/if} \r\n                <Icon\r\n                    class={cn(\r\n                        \"relative z-10 m-auto h-4 w-4\",\r\n                        isActive ? \"text-foreground\" : \"text-muted-foreground\"\r\n                    )}\r\n                />\r\n            </button>\r\n        {/each}\r\n    </div>\r\n{/if}\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/theme-switcher/theme-switcher.svelte"
+		},
+		{
+			"content": "import ThemeSwitcher from \"./theme-switcher.svelte\";\r\n\r\nexport {\r\n    ThemeSwitcher,\r\n\r\n    ThemeSwitcher as Root\r\n};\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/theme-switcher/index.ts"
+		}
+	]
+}
