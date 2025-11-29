@@ -1,0 +1,9 @@
+---
+title: Collaborative Canvas
+description: Create an online, realtime collaborative canvas with Kibo UI components.
+icon: Presentation
+dependencies:
+  - /components/avatar-stack
+  - /components/cursor
+installer: collaborative-canvas
+---

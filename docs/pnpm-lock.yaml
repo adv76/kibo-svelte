@@ -26,6 +26,9 @@ importers:
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
+      media-chrome:
+        specifier: ^4.16.1
+        version: 4.16.1(react@19.2.0)
       qrcode:
         specifier: ^1.5.4
         version: 1.5.4
@@ -39,6 +42,15 @@ importers:
       '@lucide/svelte':
         specifier: ^0.544.0
         version: 0.544.0(svelte@5.41.4)
+      '@mdsx/rehype-custom-highlighter':
+        specifier: ^0.0.3
+        version: 0.0.3
+      '@shikijs/langs':
+        specifier: ^3.17.0
+        version: 3.17.0
+      '@shikijs/themes':
+        specifier: ^3.17.0
+        version: 3.17.0
       '@shikijs/transformers':
         specifier: ^3.14.0
         version: 3.14.0
@@ -369,6 +381,9 @@ packages:
     peerDependencies:
       svelte: ^5
 
+  '@mdsx/rehype-custom-highlighter@0.0.3':
+    resolution: {integrity: sha512-0CpkKV6tuY8M+405RhX29zxJ6moMHb8ksMTWim2x2i7fir+RtnGRAUrK4U2Mg/uCW93OO5yLV1vY5OnFgiD9Rw==}
+
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
@@ -505,14 +520,23 @@ packages:
   '@shikijs/langs@3.14.0':
     resolution: {integrity: sha512-DIB2EQY7yPX1/ZH7lMcwrK5pl+ZkP/xoSpUzg9YC8R+evRCCiSQ7yyrvEyBsMnfZq4eBzLzBlugMyTAf13+pzg==}
 
+  '@shikijs/langs@3.17.0':
+    resolution: {integrity: sha512-icmur2n5Ojb+HAiQu6NEcIIJ8oWDFGGEpiqSCe43539Sabpx7Y829WR3QuUW2zjTM4l6V8Sazgb3rrHO2orEAw==}
+
   '@shikijs/themes@3.14.0':
     resolution: {integrity: sha512-fAo/OnfWckNmv4uBoUu6dSlkcBc+SA1xzj5oUSaz5z3KqHtEbUypg/9xxgJARtM6+7RVm0Q6Xnty41xA1ma1IA==}
+
+  '@shikijs/themes@3.17.0':
+    resolution: {integrity: sha512-/xEizMHLBmMHwtx4JuOkRf3zwhWD2bmG5BRr0IPjpcWpaq4C3mYEuTk/USAEglN0qPrTwEHwKVpSu/y2jhferA==}
 
   '@shikijs/transformers@3.14.0':
     resolution: {integrity: sha512-i67zQnY9wLMMnKasonVW1L9fKneSLZDj1ePsA4o0AZWU4uUobmJY9baRDa36z+a9/g0aG76/2tybQvm4hrwxIQ==}
 
   '@shikijs/types@3.14.0':
     resolution: {integrity: sha512-bQGgC6vrY8U/9ObG1Z/vTro+uclbjjD/uG58RvfxKZVD5p9Yc1ka3tVyEFy7BNJLzxuWyHH5NWynP9zZZS59eQ==}
+
+  '@shikijs/types@3.17.0':
+    resolution: {integrity: sha512-wjLVfutYWVUnxAjsWEob98xgyaGv0dTEnMZDruU5mRjVN7szcGOfgO+997W2yR6odp+1PtSBNeSITRRTfUzK/g==}
 
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
@@ -779,6 +803,11 @@ packages:
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
+
+  ce-la-react@0.3.2:
+    resolution: {integrity: sha512-QJ6k4lOD/btI08xG8jBPxRCGXvCnusGGkTsiXk0u3NqUu/W+BXRnFD4PYjwtqh8AWmGa5LDbGk0fLQsqr0nSMA==}
+    peerDependencies:
+      react: '>=17.0.0'
 
   character-entities-html4@2.1.0:
     resolution: {integrity: sha512-1v7fgQRj6hnSwFpq1Eu0ynr/CDEw0rXo2B61qXrLNdHZmPKgb7fqS1a2JwF0rISo9q77jDI8VMEHoApn8qDoZA==}
@@ -1248,6 +1277,9 @@ packages:
     peerDependencies:
       svelte: ^5.0.0
 
+  media-chrome@4.16.1:
+    resolution: {integrity: sha512-qtFlsy0lNDVCyVo//ZCAfRPKwgehfOYp6rThZzDUuZ5ypv41yqUfAxK+P9TOs+XSVWXATPTT2WRV0fbW0BH4vQ==}
+
   memoize-weak@1.0.2:
     resolution: {integrity: sha512-gj39xkrjEw7nCn4nJ1M5ms6+MyMlyiGmttzsqAUsAKn6bYKwuTHh/AO3cKPF8IBrTIYTxb0wWXFs3E//Y8VoWQ==}
 
@@ -1402,6 +1434,10 @@ packages:
     resolution: {integrity: sha512-1ca71Zgiu6ORjHqFBDpnSMTR2ReToX4l1Au1VFLyVeBTFavzQnv5JxMFr3ukHVKpSrSA2MCk0lNJSykjUfz7Zg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
+
+  react@19.2.0:
+    resolution: {integrity: sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==}
+    engines: {node: '>=0.10.0'}
 
   readdirp@4.1.2:
     resolution: {integrity: sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==}
@@ -1986,6 +2022,11 @@ snapshots:
     dependencies:
       svelte: 5.41.4
 
+  '@mdsx/rehype-custom-highlighter@0.0.3':
+    dependencies:
+      unified: 11.0.5
+      unist-util-visit: 5.0.0
+
   '@polka/url@1.0.0-next.29': {}
 
   '@poppinss/macroable@1.1.0':
@@ -2097,9 +2138,17 @@ snapshots:
     dependencies:
       '@shikijs/types': 3.14.0
 
+  '@shikijs/langs@3.17.0':
+    dependencies:
+      '@shikijs/types': 3.17.0
+
   '@shikijs/themes@3.14.0':
     dependencies:
       '@shikijs/types': 3.14.0
+
+  '@shikijs/themes@3.17.0':
+    dependencies:
+      '@shikijs/types': 3.17.0
 
   '@shikijs/transformers@3.14.0':
     dependencies:
@@ -2107,6 +2156,11 @@ snapshots:
       '@shikijs/types': 3.14.0
 
   '@shikijs/types@3.14.0':
+    dependencies:
+      '@shikijs/vscode-textmate': 10.0.2
+      '@types/hast': 3.0.4
+
+  '@shikijs/types@3.17.0':
     dependencies:
       '@shikijs/vscode-textmate': 10.0.2
       '@types/hast': 3.0.4
@@ -2362,6 +2416,10 @@ snapshots:
     optional: true
 
   ccount@2.0.1: {}
+
+  ce-la-react@0.3.2(react@19.2.0):
+    dependencies:
+      react: 19.2.0
 
   character-entities-html4@2.1.0: {}
 
@@ -2889,6 +2947,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  media-chrome@4.16.1(react@19.2.0):
+    dependencies:
+      ce-la-react: 0.3.2(react@19.2.0)
+    transitivePeerDependencies:
+      - react
+
   memoize-weak@1.0.2: {}
 
   memoize@10.2.0:
@@ -3098,6 +3162,8 @@ snapshots:
       dijkstrajs: 1.0.3
       pngjs: 5.0.0
       yargs: 15.4.1
+
+  react@19.2.0: {}
 
   readdirp@4.1.2: {}
 

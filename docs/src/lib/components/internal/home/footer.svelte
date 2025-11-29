@@ -3,6 +3,10 @@
     import { getComponents } from "$lib/source";
     import Logo from "../nav/logo.svelte";
 
+    import { ThemeSwitcher } from "$lib/registry/components/theme-switcher";
+    import { userPrefersMode } from "mode-watcher";
+
+
     const components = getComponents();
 
     const componentsHalf = Math.ceil(components.length / 2);
@@ -43,7 +47,7 @@ const patternsRight = patternFolders.slice(patternsHalf);
                 <Logo />
             </a>
         </div>
-        <!-- <Theme /> -->
+        <ThemeSwitcher bind:value={userPrefersMode.current} /> 
     </div>
     <div class="container grid gap-8 md:grid-cols-3 lg:grid-cols-6">
         <div>

@@ -4,6 +4,7 @@
     import NavBar from "$lib/components/internal/nav/nav-bar.svelte";
     import { Toaster } from "$lib/components/ui/sonner";
 	import { TooltipProvider } from "$lib/components/ui/tooltip";
+    import { ModeWatcher } from "mode-watcher";
 
 	let { children } = $props();
 </script>
@@ -12,11 +13,12 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<NavBar />
-
+<ModeWatcher />
 <Toaster />
 
 <TooltipProvider>
+	<NavBar />
+
 	<div class="mt-15">
 		{@render children?.()}
 	</div>

@@ -55,7 +55,7 @@
             value="code"
         >
             {#await loadCode() then sourceCode}
-                <PreviewCode code={sourceCode} filename="index.ts" language="tsx" />
+                <PreviewCode code={sourceCode} filename="preview.svelte" language="svelte" />
             {/await}
         </Tabs.Content>
         <Tabs.Content

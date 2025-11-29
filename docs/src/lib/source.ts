@@ -7,7 +7,7 @@ type Metadata = {
 };
 
 const components = import.meta.glob<Metadata>("./content/components/*.md", { import: "metadata", eager: true });
-const blocks = import.meta.glob("./content/blocks/*.md");
+const blocks = import.meta.glob<Metadata>("./content/blocks/*.md", { import: "metadata", eager: true });
 
 
 
@@ -51,4 +51,26 @@ export function getComponents(): SourceEntry[] {
     return componentList;
 };
 
+export function getBlocks(): SourceEntry[] {
+    const blockList: SourceEntry[] = [];
+
+    for (const [filePath, metadata] of Object.entries(blocks)) {
+
+        const split = filePath.replaceAll("\\", "/").split("/");
+        const fileName = split[split.length - 1];
+
+        const blockKey = fileName.substring(0, fileName.length - 3);
+
+        blockList.push({ 
+            type: "block",
+            key: blockKey,
+            name: metadata.title,
+            description: metadata.description,
+            icon: metadata.icon,
+            path: filePath
+        });
+    }
+
+    return blockList;
+};
 

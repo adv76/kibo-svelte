@@ -34,7 +34,7 @@ __Forms__
 - [ ] Combobox
 - [ ] Dropzone
 - [ ] Mini Calendar
-- [ ] Tags
+- [x] Tags
 
 __Images__
 
@@ -50,7 +50,7 @@ __Social__
 
 - [x] Stories
 - [ ] Reel
-- [ ] Video Player
+- [x] Video Player
 
 __Callouts__
 
@@ -59,7 +59,7 @@ __Callouts__
 
 __Styling__
 
-- [ ] Typography
+- [x] Typography
 
 __Other__
 
@@ -73,7 +73,7 @@ __Other__
 - [x] Pill
 - [x] QR Code
 - [ ] Rating
-- [ ] Relative Time
+- [x] Relative Time
 - [x] Spinner
 - [x] Status
 - [x] Theme Switcher
