@@ -3,6 +3,11 @@ title: Setup
 description: How to install and set up Kibo Svelte components in your project
 ---
 
+<script>
+  import Callout from "$lib/components/internal/callout.svelte";
+  import Installer from "$lib/components/internal/installer.svelte";
+</script>
+
 Installing Kibo Svelte is straightforward and can be via the standard shadcn-svelte CLI if you’ve already adopted shadcn’s workflow.
 
 This guide will walk you through the prerequisites and the installation steps, complete with example commands. By the end, you’ll have Kibo Svelte components ready to use in your project.

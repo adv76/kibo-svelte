@@ -19,7 +19,7 @@ Improvements to documentation are very valuable. This could mean fixing typos, c
 
 ## New Components
 
-Perhaps you built a component that would be useful to others. You can contribute new components to the library. (See [Adding New Components](#adding-new-components) below.)
+Perhaps you built a component that would be useful to others. You can contribute new components to the library. (See -link st- Adding New Components -link end- (#adding-new-components) below.)
 
 ## Enhancements
 
