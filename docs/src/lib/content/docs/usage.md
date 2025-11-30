@@ -9,7 +9,7 @@ Once a Kibo UI component is installed, you can import it and use it in your appl
 
 Let’s say you just added an Announcement component (a simple dismissible banner for notifications). You might use it as follows:
 
-```tsx title="Hero.tsx"
+```svelte title="Hero.tsx"
 'use client';
 
 import {

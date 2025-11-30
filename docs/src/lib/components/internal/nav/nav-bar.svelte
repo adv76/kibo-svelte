@@ -5,20 +5,12 @@
     import MobileMenu from "./mobile-menu.svelte";
     import MobileSearch from "./mobile-search.svelte";
     import Search from "./search.svelte";
-    import { getComponents } from "$lib/source";
+    import { getBlocks, getComponents } from "$lib/source";
     import { resolve } from "$app/paths";
 
-    // const componentsCount = source
-    // .getPages()
-    // .filter(({ slugs }) => slugs[0] === "components").length;
-
     const componentsCount = $derived(getComponents().length);
+    const blocksCount = $derived(getBlocks().length);
 
-    // const blocksCount = source
-    // .getPages()
-    // .filter(({ slugs }) => slugs[0] === "blocks").length;
-
-    const blocksCount = $derived(0);
 
     // const patternsPath = path.join(process.cwd(), "../../packages/patterns");
     // const patternsCount = globSync(`${patternsPath}/**/*.tsx`).length;

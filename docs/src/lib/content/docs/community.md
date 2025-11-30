@@ -1,7 +1,9 @@
 ---
 title: Community
-description: Learn how to get involved with the Kibo UI community.
+description: Learn how to get involved with the Kibo Svelte community.
 ---
+
+## _These docs are not yet up to date._
 
 Please note we have a [Code of Conduct](https://github.com/shadcnblocks/kibo/blob/main/.github/CODE_OF_CONDUCT.md) – we expect everyone to be respectful and constructive in all project discussions. If you’re contributing, you’re part of the community. When interacting with other contributors or users, be patient and considerate, as everyone (including maintainers) is contributing time and effort.
 

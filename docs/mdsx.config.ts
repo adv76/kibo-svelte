@@ -12,6 +12,7 @@ let highlighter: Awaited<ReturnType<typeof createHighlighterCore>> | null = null
 const highlighterPromise = createHighlighterCore({
 	themes: [import('@shikijs/themes/github-light'), import('@shikijs/themes/github-dark')],
 	langs: [
+		import('@shikijs/langs/bash'),
 		import('@shikijs/langs/javascript'),
 		import('@shikijs/langs/typescript'),
 		import('@shikijs/langs/svelte'),

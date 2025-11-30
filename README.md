@@ -33,7 +33,7 @@ __Forms__
 - [x] Choicebox
 - [ ] Combobox
 - [ ] Dropzone
-- [ ] Mini Calendar
+- [x] Mini Calendar
 - [x] Tags
 
 __Images__
