@@ -1,4 +1,4 @@
-import { docGroups } from "./grp";
+import { componentGroups, docGroups } from "./grp";
 
 type DocMetadata = {
     title: string;
@@ -43,6 +43,11 @@ type SourceEntry = {
     description: string;
     icon: string;
     path: string;
+};
+
+type SourceGroup = {
+    name: string;
+    items: SourceEntry[];
 };
 
 
@@ -98,7 +103,7 @@ export function getDocGroups(): DocGroup[] {
     }
 
     return groups;
-}
+};
 
 
 
@@ -124,6 +129,39 @@ export function getComponents(): SourceEntry[] {
 
     return componentList;
 };
+
+export function getComponentGroups(): SourceGroup[] {
+    const components = getComponents();
+
+    const groups: SourceGroup[] = [];
+
+    for (const grp of componentGroups) {
+        const componentGrp: SourceGroup = {
+            name: grp.name,
+            items: []
+        };
+
+        for (const key of grp.items) {
+            const idx = components.findIndex(d => d.key == key);
+            if (idx != -1) {
+                componentGrp.items.push(components[idx]);
+                components.splice(idx, 1);
+            }
+        }
+
+        groups.push(componentGrp);
+    }
+
+    if (components.length > 0) { // handle any left over
+        groups.push({
+            name: "Misc",
+            items: [ ...components ]
+        });
+    }
+
+    return groups;
+};
+
 
 export function getBlocks(): SourceEntry[] {
     const blockList: SourceEntry[] = [];

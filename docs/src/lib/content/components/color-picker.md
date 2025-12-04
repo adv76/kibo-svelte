@@ -8,6 +8,10 @@ dependencies:
 installer: color-picker
 ---
 
+<script>
+  import Preview from "$lib/components/internal/preview/preview.svelte";
+</script>
+
 ## Features
 
 - Interactive color selection with drag and drop functionality

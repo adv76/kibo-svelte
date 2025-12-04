@@ -39,7 +39,7 @@ __Forms__
 __Images__
 
 - [ ] Image Crop
-- [ ] Image Zoom
+- [x] Image Zoom
 
 __Finance__
 
