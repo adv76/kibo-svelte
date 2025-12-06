@@ -1,14 +1,5 @@
 import { createContext } from "svelte";
 
-
-export type MiniCalendarContextType = {
-  selectedDate: Date | null | undefined;
-  onDateSelect: (date: Date) => void;
-  startDate: Date;
-  onNavigate: (direction: "prev" | "next") => void;
-  days: number;
-};
-
 type MiniCalendarStateProps = {
     selectedDate: () => Date | null | undefined;
     onDateSelect: (date: Date) => void;

@@ -1,16 +1,19 @@
 <script lang="ts">
     import { cn } from "$lib/utils";
     import { type DragDropEvents, DragDropProvider, KeyboardSensor, PointerSensor } from "@dnd-kit-svelte/svelte";
+    import type { KanbanColumnProps, KanbanItemProps } from "./types";
+    import { setupContext } from "./kanban-context.svelte";
+    import type { Snippet } from "svelte";
+    import { move } from '@dnd-kit/helpers';
 
-
-    export type KanbanProviderProps<
-    T extends KanbanItemProps = KanbanItemProps,
-    C extends KanbanColumnProps = KanbanColumnProps,
-    > = Omit<DndContextProps, "children"> & {
-        children: (column: C) => ReactNode;
-        className?: string;
+    type KanbanProviderProps<
+        T extends KanbanItemProps = KanbanItemProps,
+        C extends KanbanColumnProps = KanbanColumnProps,
+    > = {
         columns: C[];
         data: T[];
+        class?: string;
+        child: Snippet<[{ column: C }]>;
         onDataChange?: (data: T[]) => void;
         onDragStart?: (event: DragStartEvent) => void;
         onDragEnd?: (event: DragEndEvent) => void;
@@ -18,24 +21,41 @@
     };
 
     let {
-        children,
+        columns,
+        data,
+        class: className,
+        child,
         onDragStart,
         onDragEnd,
         onDragOver,
-        className,
-        columns,
-        data,
         onDataChange,
         ...restProps
-    } = $props();
+    }: KanbanProviderProps = $props();
 
     let activeCardId = $state<string | null>(null);
 
-    // set up context
+    const ctx = setupContext({
+        columns: () => columns,
+        data: () => data,
+        activeCardId: () => activeCardId
+    });
 
     const sensors = [PointerSensor, KeyboardSensor];
 
-    const handleDragStart = (event: DragStartEvent) => {
+    export function arrayMove<T>(array: T[], from: number, to: number): T[] {
+        const newArray = array.slice();
+        newArray.splice(
+            to < 0 ? newArray.length + to : to,
+            0,
+            newArray.splice(from, 1)[0]
+        );
+
+        return newArray;
+    }
+
+    const handleDragStart = (event: DragDropEvents["dragstart"]) => {
+        console.log("DragStart", event);
+
         const card = data.find((item) => item.id === event.active.id);
         if (card) {
             activeCardId = event.active.id as string;
@@ -43,94 +63,104 @@
         onDragStart?.(event);
     };
 
-  const handleDragOver = (event: DragOverEvent) => {
-    const { active, over } = event;
+    const handleDragOver = (event: DragOverEvent) => {
+        data = move(data, event);
 
-    if (!over) {
-      return;
-    }
+        return;
 
-    const activeItem = data.find((item) => item.id === active.id);
-    const overItem = data.find((item) => item.id === over.id);
+        console.log("DragOver", event);
 
-    if (!activeItem) {
-      return;
-    }
+        const { active, over } = event;
 
-    const activeColumn = activeItem.column;
-    const overColumn =
-      overItem?.column ||
-      columns.find((col) => col.id === over.id)?.id ||
-      columns[0]?.id;
+        if (!over) {
+            return;
+        }
 
-    if (activeColumn !== overColumn) {
-      let newData = [...data];
-      const activeIndex = newData.findIndex((item) => item.id === active.id);
-      const overIndex = newData.findIndex((item) => item.id === over.id);
+        const activeItem = data.find((item) => item.id === active.id);
+        const overItem = data.find((item) => item.id === over.id);
 
-      newData[activeIndex].column = overColumn;
-      newData = arrayMove(newData, activeIndex, overIndex);
+        if (!activeItem) {
+            return;
+        }
 
-      onDataChange?.(newData);
-    }
+        const activeColumn = activeItem.column;
+        const overColumn =
+            overItem?.column ||
+            columns.find((col) => col.id === over.id)?.id ||
+            columns[0]?.id;
 
-    onDragOver?.(event);
-  };
+        if (activeColumn !== overColumn) {
+            let newData = [...data];
+            const activeIndex = newData.findIndex((item) => item.id === active.id);
+            const overIndex = newData.findIndex((item) => item.id === over.id);
 
-  const handleDragEnd = (event: DragEndEvent) => {
-    setActiveCardId(null);
+            newData[activeIndex].column = overColumn;
+            newData = arrayMove(newData, activeIndex, overIndex);
 
-    onDragEnd?.(event);
+            onDataChange?.(newData);
+        }
 
-    const { active, over } = event;
+        onDragOver?.(event);
+    };
 
-    if (!over || active.id === over.id) {
-      return;
-    }
+    const handleDragEnd = (event: DragEndEvent, manager: any) => {
+        console.log("DragEnd", event);
 
-    let newData = [...data];
+        activeCardId = null;
 
-    const oldIndex = newData.findIndex((item) => item.id === active.id);
-    const newIndex = newData.findIndex((item) => item.id === over.id);
+        onDragEnd?.(event);
 
-    newData = arrayMove(newData, oldIndex, newIndex);
+        const { active, over } = event;
 
-    onDataChange?.(newData);
-  };
+        if (!over || active.id === over.id) {
+            return;
+        }
 
-  const announcements: Announcements = {
-    onDragStart({ active }) {
-      const { name, column } = data.find((item) => item.id === active.id) ?? {};
+        let newData = [...data];
 
-      return `Picked up the card "${name}" from the "${column}" column`;
-    },
-    onDragOver({ active, over }) {
-      const { name } = data.find((item) => item.id === active.id) ?? {};
-      const newColumn = columns.find((column) => column.id === over?.id)?.name;
+        const oldIndex = newData.findIndex((item) => item.id === active.id);
+        const newIndex = newData.findIndex((item) => item.id === over.id);
 
-      return `Dragged the card "${name}" over the "${newColumn}" column`;
-    },
-    onDragEnd({ active, over }) {
-      const { name } = data.find((item) => item.id === active.id) ?? {};
-      const newColumn = columns.find((column) => column.id === over?.id)?.name;
+        newData = arrayMove(newData, oldIndex, newIndex);
 
-      return `Dropped the card "${name}" into the "${newColumn}" column`;
-    },
-    onDragCancel({ active }) {
-      const { name } = data.find((item) => item.id === active.id) ?? {};
+        onDataChange?.(newData);
+    };
 
-      return `Cancelled dragging the card "${name}"`;
-    },
-  };
+//   const announcements: Announcements = {
+//     onDragStart({ active }) {
+//       const { name, column } = data.find((item) => item.id === active.id) ?? {};
+
+//       return `Picked up the card "${name}" from the "${column}" column`;
+//     },
+//     onDragOver({ active, over }) {
+//       const { name } = data.find((item) => item.id === active.id) ?? {};
+//       const newColumn = columns.find((column) => column.id === over?.id)?.name;
+
+//       return `Dragged the card "${name}" over the "${newColumn}" column`;
+//     },
+//     onDragEnd({ active, over }) {
+//       const { name } = data.find((item) => item.id === active.id) ?? {};
+//       const newColumn = columns.find((column) => column.id === over?.id)?.name;
+
+//       return `Dropped the card "${name}" into the "${newColumn}" column`;
+//     },
+//     onDragCancel({ active }) {
+//       const { name } = data.find((item) => item.id === active.id) ?? {};
+
+//       return `Cancelled dragging the card "${name}"`;
+//     },
+//   };
 </script>
 
+<!--accessibility={{ announcements }} collisionDetection={closestCenter}-->
+
 <DragDropProvider
-    accessibility={{ announcements }}
-    collisionDetection={closestCenter}
+    
+    
     onDragEnd={handleDragEnd}
     onDragOver={handleDragOver}
     onDragStart={handleDragStart}
-    sensors={sensors}
+    {sensors}
     {...restProps}
 >
     <div
@@ -140,7 +170,7 @@
         )}
     >
         {#each columns as column}
-            {@render child(column)}
+            {@render child({ column })}
         {/each}
     </div>
 <!-- {typeof window !== "undefined" &&

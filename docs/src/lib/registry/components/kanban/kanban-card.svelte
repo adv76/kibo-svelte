@@ -4,6 +4,7 @@
     import type { KanbanItemProps } from "./types";
     import { cn } from "$lib/utils";
     import { useSortable } from "@dnd-kit-svelte/svelte/sortable";
+    import { getContext } from "./kanban-context.svelte";
 
 
     type KanbanCardProps<T extends KanbanItemProps = KanbanItemProps> = T & {
@@ -27,9 +28,12 @@
         // transform,
         isDragging,
     } = useSortable({
-        id,
+        id: () => id,
         index: () => index
     });
+
+    const ctx = getContext();
+
     //const { activeCardId } = useContext(KanbanContext) as KanbanContextProps;
 
     // const style = {
@@ -43,7 +47,7 @@
     <Card
         class={cn(
             "cursor-grab gap-4 rounded-md p-3 shadow-sm",
-            isDragging && "pointer-events-none cursor-grabbing opacity-30",
+            isDragging.current && "pointer-events-none cursor-grabbing opacity-30",
             className
         )}
     >

@@ -11,7 +11,6 @@
     } = $props();
 
     const lines = $derived(code?.split("\n"));
-    $inspect(lines)
 </script>
 
 <div bind:this={ref} {...restProps}>

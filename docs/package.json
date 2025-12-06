@@ -13,6 +13,7 @@
 		"registry:build": "pnpx shadcn-svelte registry build"
 	},
 	"devDependencies": {
+		"@faker-js/faker": "^10.1.0",
 		"@internationalized/date": "^3.10.0",
 		"@lucide/svelte": "^0.544.0",
 		"@mdsx/rehype-custom-highlighter": "^0.0.3",
@@ -48,6 +49,7 @@
 	},
 	"dependencies": {
 		"@dnd-kit-svelte/svelte": "^0.1.5",
+		"@dnd-kit/helpers": "^0.1.21",
 		"@icons-pack/svelte-simple-icons": "^6.5.0",
 		"@selemondev/svelte-marquee": "^0.1.1",
 		"@tailwindcss/vite": "^4.1.16",

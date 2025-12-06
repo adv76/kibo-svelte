@@ -3,6 +3,9 @@
     import type { Snippet } from 'svelte';
     import type { HTMLAttributes } from 'svelte/elements';
     import type { KanbanItemProps } from './types';
+    import { getContext } from './kanban-context.svelte';
+    import { cn } from '$lib/utils';
+    
 
     let {
         id,
@@ -10,22 +13,24 @@
         child,
         ...restProps
     }: Omit<HTMLAttributes<HTMLDivElement>, "children"> & {
-        child: Snippet<[{ item: T}]>;
+        child: Snippet<[{ item: T, index: number}]>;
     } = $props();
 
-    const { data } = useContext(KanbanContext) as KanbanContextProps<T>;
-    const filteredData = data.filter((item) => item.column === props.id);
-    const items = filteredData.map((item) => item.id);
+    const ctx = getContext();
+
+    const filteredData = $derived(ctx.data.filter((item) => item.column === id));
+    const items = $derived(filteredData.map((item) => item.id));
 </script>
 
 <ScrollArea class="overflow-hidden">
-    <SortableContext items={items}>
-    <div
-        className={cn("flex flex-grow flex-col gap-2 p-2", className)}
-        {...props}
-    >
-        {filteredData.map(children)}
-    </div>
-    </SortableContext>
-    <ScrollBar orientation="vertical" />
+    <!-- <SortableContext items={items}> -->
+        <div
+            class={cn("flex flex-grow flex-col gap-2 p-2", className)}
+            {...restProps}
+        >
+            {#each filteredData as item, index}
+                {@render child({ item, index })}
+            {/each}
+        </div>
+    <!-- </SortableContext> -->
 </ScrollArea>
