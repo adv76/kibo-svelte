@@ -3,7 +3,8 @@
     import type { Snippet } from "svelte";
     import type { KanbanItemProps } from "./types";
     import { cn } from "$lib/utils";
-    import { useSortable } from "@dnd-kit-svelte/svelte/sortable";
+    import { useSortable } from "@dnd-kit-svelte/sortable";
+    import { CSS, styleObjectToString } from '@dnd-kit-svelte/utilities';
     import { getContext } from "./kanban-context.svelte";
 
 
@@ -21,15 +22,15 @@
     }: KanbanCardProps<T> = $props();
     
     const {
-        // attributes,
-        // listeners,
-        ref,
-        // transition,
-        // transform,
+        attributes,
+        listeners,
+        node,
+        transition,
+        transform,
         isDragging,
+        isSorting
     } = useSortable({
-        id: () => id,
-        index: () => index
+        id: () => id
     });
 
     const ctx = getContext();
@@ -40,10 +41,17 @@
     //     transition,
     //     transform: CSS.Transform.toString(transform),
     // };
+    const style = $derived(
+		styleObjectToString({
+			transform: CSS.Transform.toString(transform.current),
+			transition: isSorting.current ? transition.current : undefined,
+			zIndex: isDragging.current ? 1 : undefined,
+		})
+	);
 
 </script>
 <!--style={style} {...listeners} {...attributes}-->
-<div {@attach ref} >
+<div bind:this={node.current} {style} {...listeners.current} {...attributes.current}>
     <Card
         class={cn(
             "cursor-grab gap-4 rounded-md p-3 shadow-sm",

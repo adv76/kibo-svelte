@@ -4,6 +4,7 @@
     import type { HTMLAttributes } from 'svelte/elements';
     import type { KanbanItemProps } from './types';
     import { getContext } from './kanban-context.svelte';
+    import { SortableContext } from '@dnd-kit-svelte/sortable';
     import { cn } from '$lib/utils';
     
 
@@ -19,11 +20,10 @@
     const ctx = getContext();
 
     const filteredData = $derived(ctx.data.filter((item) => item.column === id));
-    const items = $derived(filteredData.map((item) => item.id));
 </script>
 
 <ScrollArea class="overflow-hidden">
-    <!-- <SortableContext items={items}> -->
+    <SortableContext items={filteredData}>
         <div
             class={cn("flex flex-grow flex-col gap-2 p-2", className)}
             {...restProps}
@@ -32,5 +32,5 @@
                 {@render child({ item, index })}
             {/each}
         </div>
-    <!-- </SortableContext> -->
+    </SortableContext>
 </ScrollArea>

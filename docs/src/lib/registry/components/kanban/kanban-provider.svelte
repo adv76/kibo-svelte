@@ -1,11 +1,10 @@
 <script lang="ts">
     import { cn } from "$lib/utils";
-    import { type DragDropEvents, DragDropProvider, KeyboardSensor, PointerSensor } from "@dnd-kit-svelte/svelte";
+    import { DndContext, type DragEndEvent, type DragOverEvent, type DragStartEvent, useSensor, useSensors, KeyboardSensor, PointerSensor } from "@dnd-kit-svelte/core";
     import type { KanbanColumnProps, KanbanItemProps } from "./types";
     import { setupContext } from "./kanban-context.svelte";
     import type { Snippet } from "svelte";
-    import { move } from '@dnd-kit/helpers';
-
+    import { arrayMove } from '@dnd-kit-svelte/sortable';
     type KanbanProviderProps<
         T extends KanbanItemProps = KanbanItemProps,
         C extends KanbanColumnProps = KanbanColumnProps,
@@ -40,23 +39,10 @@
         activeCardId: () => activeCardId
     });
 
-    const sensors = [PointerSensor, KeyboardSensor];
+    const sensors = useSensors(useSensor(PointerSensor), useSensor(KeyboardSensor));
 
-    export function arrayMove<T>(array: T[], from: number, to: number): T[] {
-        const newArray = array.slice();
-        newArray.splice(
-            to < 0 ? newArray.length + to : to,
-            0,
-            newArray.splice(from, 1)[0]
-        );
-
-        return newArray;
-    }
-
-    const handleDragStart = (event: DragDropEvents["dragstart"]) => {
-        console.log("DragStart", event);
-
-        const card = data.find((item) => item.id === event.active.id);
+    const handleDragStart = (event: DragStartEvent) => {
+        const card = ctx.data.find((item) => item.id === event.active.id);
         if (card) {
             activeCardId = event.active.id as string;
         }
@@ -64,20 +50,14 @@
     };
 
     const handleDragOver = (event: DragOverEvent) => {
-        data = move(data, event);
-
-        return;
-
-        console.log("DragOver", event);
-
         const { active, over } = event;
 
         if (!over) {
             return;
         }
 
-        const activeItem = data.find((item) => item.id === active.id);
-        const overItem = data.find((item) => item.id === over.id);
+        const activeItem = ctx.data.find((item) => item.id === active.id);
+        const overItem = ctx.data.find((item) => item.id === over.id);
 
         if (!activeItem) {
             return;
@@ -90,22 +70,19 @@
             columns[0]?.id;
 
         if (activeColumn !== overColumn) {
-            let newData = [...data];
-            const activeIndex = newData.findIndex((item) => item.id === active.id);
-            const overIndex = newData.findIndex((item) => item.id === over.id);
+            const activeIndex = ctx.data.findIndex((item) => item.id === active.id);
+            const overIndex = ctx.data.findIndex((item) => item.id === over.id);
 
-            newData[activeIndex].column = overColumn;
-            newData = arrayMove(newData, activeIndex, overIndex);
+            ctx.data[activeIndex].column = overColumn;
+            ctx.data = arrayMove(ctx.data, activeIndex, overIndex);
 
-            onDataChange?.(newData);
+            onDataChange?.(ctx.data);
         }
 
         onDragOver?.(event);
     };
 
-    const handleDragEnd = (event: DragEndEvent, manager: any) => {
-        console.log("DragEnd", event);
-
+    const handleDragEnd = (event: DragEndEvent) => {
         activeCardId = null;
 
         onDragEnd?.(event);
@@ -116,14 +93,12 @@
             return;
         }
 
-        let newData = [...data];
+        const oldIndex = ctx.data.findIndex((item) => item.id === active.id);
+        const newIndex = ctx.data.findIndex((item) => item.id === over.id);
 
-        const oldIndex = newData.findIndex((item) => item.id === active.id);
-        const newIndex = newData.findIndex((item) => item.id === over.id);
+        ctx.data = arrayMove(ctx.data, oldIndex, newIndex);
 
-        newData = arrayMove(newData, oldIndex, newIndex);
-
-        onDataChange?.(newData);
+        onDataChange?.(ctx.data);
     };
 
 //   const announcements: Announcements = {
@@ -154,9 +129,7 @@
 
 <!--accessibility={{ announcements }} collisionDetection={closestCenter}-->
 
-<DragDropProvider
-    
-    
+<DndContext
     onDragEnd={handleDragEnd}
     onDragOver={handleDragOver}
     onDragStart={handleDragStart}
@@ -180,4 +153,4 @@
     </DragOverlay>,
     document.body
     )} -->
-</DragDropProvider>
+</DndContext>

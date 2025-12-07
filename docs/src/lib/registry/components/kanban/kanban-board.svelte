@@ -1,6 +1,6 @@
 <script lang="ts">
     import { cn } from "$lib/utils";
-    import { useDroppable } from "@dnd-kit-svelte/svelte";
+    import { useDroppable } from "@dnd-kit-svelte/core";
     import type { Snippet } from "svelte";
 
     let {
@@ -14,16 +14,16 @@
     } = $props();
 
     // was isOver ???
-    const { isDropTarget, ref } = useDroppable({
+    const droppable = useDroppable({
         id
     });
 </script>
 
 <div
-    {@attach ref}
+    bind:this={droppable.node.current}
     class={cn(
         "flex size-full min-h-40 flex-col divide-y overflow-hidden rounded-md border bg-secondary text-xs shadow-sm ring-2 transition-all",
-        isDropTarget.current ? "ring-primary" : "ring-transparent",
+        droppable.isOver.current ? "ring-primary" : "ring-transparent",
         className
     )}
 >
