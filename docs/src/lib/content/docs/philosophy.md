@@ -3,6 +3,8 @@ title: Philosophy
 description: Learn about the philosophy of Kibo UI.
 ---
 
+## _These docs are not yet up to date._
+
 Kibo UI is built on a set of core design principles that guide every component and feature. These principles ensure that the library remains flexible, accessible, and developer-friendly as it grows. In this section, we’ll outline Kibo UI’s philosophy and how it influences the design and implementation of the components.
 
 ## Composability

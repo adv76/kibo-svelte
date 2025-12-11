@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "image-zoom",
+	"title": "Image Zoom",
+	"type": "registry:ui",
+	"description": "Image zoom is a component that allows you to zoom in on an image.",
+	"dependencies": [
+		"svelte-medium-image-zoom"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n    import { cn } from \"$UTILS$\";\r\n    import type { ComponentProps } from \"svelte\";\r\n    import Zoom from \"svelte-medium-image-zoom\";\r\n\r\n    let {\r\n        class: className,\r\n        backdropClassName,\r\n        children,\r\n        ...restProps\r\n    }: ComponentProps<typeof Zoom> & {\r\n        class?: string;\r\n        backdropClassName?: string;\r\n    } = $props();\r\n</script>\r\n\r\n<div\r\n    class={cn(\r\n        \"relative\",\r\n        \"[&_[data-smiz-ghost]]:pointer-events-none [&_[data-smiz-ghost]]:absolute\",\r\n        \"[&_[data-smiz-btn-zoom]]:m-0 [&_[data-smiz-btn-zoom]]:size-10 [&_[data-smiz-btn-zoom]]:touch-manipulation [&_[data-smiz-btn-zoom]]:appearance-none [&_[data-smiz-btn-zoom]]:rounded-[50%] [&_[data-smiz-btn-zoom]]:border-none [&_[data-smiz-btn-zoom]]:bg-foreground/70 [&_[data-smiz-btn-zoom]]:p-2 [&_[data-smiz-btn-zoom]]:text-background [&_[data-smiz-btn-zoom]]:outline-offset-2\",\r\n        \"[&_[data-smiz-btn-unzoom]]:m-0 [&_[data-smiz-btn-unzoom]]:size-10 [&_[data-smiz-btn-unzoom]]:touch-manipulation [&_[data-smiz-btn-unzoom]]:appearance-none [&_[data-smiz-btn-unzoom]]:rounded-[50%] [&_[data-smiz-btn-unzoom]]:border-none [&_[data-smiz-btn-unzoom]]:bg-foreground/70 [&_[data-smiz-btn-unzoom]]:p-2 [&_[data-smiz-btn-unzoom]]:text-background [&_[data-smiz-btn-unzoom]]:outline-offset-2\",\r\n        \"[&_[data-smiz-btn-zoom]:not(:focus):not(:active)]:pointer-events-none [&_[data-smiz-btn-zoom]:not(:focus):not(:active)]:absolute [&_[data-smiz-btn-zoom]:not(:focus):not(:active)]:size-px [&_[data-smiz-btn-zoom]:not(:focus):not(:active)]:overflow-hidden [&_[data-smiz-btn-zoom]:not(:focus):not(:active)]:whitespace-nowrap [&_[data-smiz-btn-zoom]:not(:focus):not(:active)]:[clip-path:inset(50%)] [&_[data-smiz-btn-zoom]:not(:focus):not(:active)]:[clip:rect(0_0_0_0)]\",\r\n        \"[&_[data-smiz-btn-zoom]]:absolute [&_[data-smiz-btn-zoom]]:top-2.5 [&_[data-smiz-btn-zoom]]:right-2.5 [&_[data-smiz-btn-zoom]]:bottom-auto [&_[data-smiz-btn-zoom]]:left-auto [&_[data-smiz-btn-zoom]]:cursor-zoom-in\",\r\n        \"[&_[data-smiz-btn-unzoom]]:absolute [&_[data-smiz-btn-unzoom]]:top-5 [&_[data-smiz-btn-unzoom]]:right-5 [&_[data-smiz-btn-unzoom]]:bottom-auto [&_[data-smiz-btn-unzoom]]:left-auto [&_[data-smiz-btn-unzoom]]:z-[1] [&_[data-smiz-btn-unzoom]]:cursor-zoom-out\",\r\n        '[&_[data-smiz-content=\"found\"]_img]:cursor-zoom-in',\r\n        '[&_[data-smiz-content=\"found\"]_svg]:cursor-zoom-in',\r\n        '[&_[data-smiz-content=\"found\"]_[role=\"img\"]]:cursor-zoom-in',\r\n        '[&_[data-smiz-content=\"found\"]_[data-zoom]]:cursor-zoom-in',\r\n        className\r\n    )}\r\n>\r\n    <Zoom\r\n        class_dialog={cn(\r\n            \"[&::backdrop]:hidden\",\r\n            \"[&[open]]:fixed [&[open]]:m-0 [&[open]]:h-dvh [&[open]]:max-h-none [&[open]]:w-dvw [&[open]]:max-w-none [&[open]]:overflow-hidden [&[open]]:border-0 [&[open]]:bg-transparent [&[open]]:p-0\",\r\n            \"[&_[data-smiz-modal-overlay]]:absolute [&_[data-smiz-modal-overlay]]:inset-0 [&_[data-smiz-modal-overlay]]:transition-all\",\r\n            '[&_[data-smiz-modal-overlay=\"hidden\"]]:bg-transparent',\r\n            '[&_[data-smiz-modal-overlay=\"visible\"]]:bg-background/80 [&_[data-smiz-modal-overlay=\"visible\"]]:backdrop-blur-md',\r\n            \"[&_[data-smiz-modal-content]]:relative [&_[data-smiz-modal-content]]:size-full\",\r\n            \"[&_[data-smiz-modal-img]]:absolute [&_[data-smiz-modal-img]]:origin-top-left [&_[data-smiz-modal-img]]:cursor-zoom-out [&_[data-smiz-modal-img]]:transition-transform\",\r\n            \"motion-reduce:[&_[data-smiz-modal-img]]:transition-none motion-reduce:[&_[data-smiz-modal-overlay]]:transition-none\",\r\n            backdropClassName\r\n        )}\r\n        {...restProps}\r\n    >\r\n        {@render children?.()}\r\n    </Zoom>\r\n</div>\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/image-zoom/image-zoom.svelte"
+		},
+		{
+			"content": "import ImageZoom from \"./image-zoom.svelte\";\r\n\r\nexport {\r\n    ImageZoom\r\n};\r\n",
+			"type": "registry:file",
+			"target": "../kibo-ui/image-zoom/index.ts"
+		}
+	]
+}

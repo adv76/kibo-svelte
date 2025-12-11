@@ -44,7 +44,7 @@
 			"target": "../kibo-ui/code-block/code-block-copy-button.svelte"
 		},
 		{
-			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        code,\r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\r\n        code?: string;\r\n    } = $props();\r\n\r\n    const lines = $derived(code?.split(\"\\n\"));\r\n</script>\r\n\r\n<div bind:this={ref} {...restProps}>\r\n    <pre class=\"w-full\">\r\n        <code>\r\n            {#if lines}\r\n                {#each lines as line, i(i)}\r\n                    <span class=\"line\">\r\n                        {line}\r\n                    </span>\r\n                {/each}\r\n            {/if}\r\n        </code>\r\n    </pre>\r\n</div>\r\n",
+			"content": "<script lang=\"ts\">\r\n    import type { HTMLAttributes } from \"svelte/elements\";\r\n    import { type WithElementRef } from \"$UTILS$.js\";\r\n\r\n    let {\r\n        ref = $bindable(null),\r\n        code,\r\n        ...restProps\r\n    }: WithElementRef<HTMLAttributes<HTMLDivElement>> & {\r\n        code?: string;\r\n    } = $props();\r\n\r\n    const lines = $derived(code?.split(\"\\n\"));\r\n</script>\r\n\r\n<div bind:this={ref} {...restProps}>\r\n    <pre class=\"w-full\">\r\n        <code>\r\n            {#if lines}\r\n                {#each lines as line, i(i)}\r\n                    <span class=\"line\">{line}</span>\r\n                {/each}\r\n            {/if}\r\n        </code>\r\n    </pre>\r\n</div>\r\n",
 			"type": "registry:file",
 			"target": "../kibo-ui/code-block/code-block-fallback.svelte"
 		},

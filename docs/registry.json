@@ -423,6 +423,77 @@
             ]
         },
         {
+            "name": "image-zoom",
+            "type": "registry:ui",
+            "title": "Image Zoom",
+            "description": "Image zoom is a component that allows you to zoom in on an image.",
+            "dependencies": ["svelte-medium-image-zoom"],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/image-zoom/image-zoom.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/image-zoom/image-zoom.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/image-zoom/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/image-zoom/index.ts"
+                }
+            ]
+        },
+        {
+            "name": "kanban",
+            "type": "registry:ui",
+            "title": "Kanban",
+            "description": "A kanban board is a visual tool that helps you manage and visualize your work. It is a board with columns, and each column represents a status, e.g. \"Backlog\", \"In Progress\", \"Done\".",
+            "dependencies": ["@dnd-kit-svelte/core", "@dnd-kit-svelte/sortable", "@dnd-kit-svelte/svelte", "@dnd-kit-svelte/utilities"],
+            "devDependencies": ["bits-ui"],
+            "registryDependencies": ["card", "scroll-area"],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/kanban/kanban-board.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/kanban/kanban-board.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/kanban/kanban-card.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/kanban/kanban-card.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/kanban/kanban-cards.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/kanban/kanban-cards.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/kanban/kanban-header.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/kanban/kanban-header.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/kanban/kanban-provider.svelte",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/kanban/kanban-provider.svelte"
+                },
+                {
+                    "path": "src/lib/registry/components/kanban/kanban-context.svelte.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/kanban/kanban-context.svelte.ts"
+                },
+                {
+                    "path": "src/lib/registry/components/kanban/types.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/kanban/types.ts"
+                },
+                {
+                    "path": "src/lib/registry/components/kanban/index.ts",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/kanban/index.ts"
+                }
+            ]
+        },
+        {
             "name": "marquee",
             "type": "registry:ui",
             "title": "Marquee",
@@ -736,6 +807,20 @@
                     "path": "src/lib/registry/components/theme-switcher/index.ts",
                     "type": "registry:file",
                     "target": "../kibo-ui/theme-switcher/index.ts"
+                }
+            ]
+        },
+        {
+            "name": "typography",
+            "type": "registry:ui",
+            "title": "typography",
+            "description": "A component for applying consistent typography styles across your application.",
+            "registryDependencies": [],
+            "files": [
+                {
+                    "path": "src/lib/registry/components/typography/styles.css",
+                    "type": "registry:file",
+                    "target": "../kibo-ui/typography/styles.css"
                 }
             ]
         }

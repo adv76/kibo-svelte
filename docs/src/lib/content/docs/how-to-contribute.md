@@ -3,6 +3,8 @@ title: How to Contribute
 description: Learn how to contribute to Kibo UI.
 ---
 
+## _These docs are not yet up to date._
+
 First off, thank you for considering contributing to Kibo UI!
 
 Kibo UI thrives on community involvement, and we welcome contributions of all kinds – from bug fixes and documentation improvements to entirely new components. This guide will help you get started with contributing, including setting up a development environment, our preferred workflow for making changes, and tips for submitting your pull requests.

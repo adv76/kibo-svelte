@@ -1,10 +1,12 @@
 <script lang="ts">
     import { cn } from "$lib/utils";
-    import { DndContext, type DragEndEvent, type DragOverEvent, type DragStartEvent, useSensor, useSensors, KeyboardSensor, PointerSensor } from "@dnd-kit-svelte/core";
+    import { DndContext, type DragEndEvent, type DragOverEvent, type DragStartEvent, useSensor, useSensors, KeyboardSensor, PointerSensor, DragOverlay, type Announcements, closestCenter } from "@dnd-kit-svelte/core";
     import type { KanbanColumnProps, KanbanItemProps } from "./types";
     import { setupContext } from "./kanban-context.svelte";
     import type { Snippet } from "svelte";
     import { arrayMove } from '@dnd-kit-svelte/sortable';
+    import { Portal } from "bits-ui";
+
     type KanbanProviderProps<
         T extends KanbanItemProps = KanbanItemProps,
         C extends KanbanColumnProps = KanbanColumnProps,
@@ -101,35 +103,35 @@
         onDataChange?.(ctx.data);
     };
 
-//   const announcements: Announcements = {
-//     onDragStart({ active }) {
-//       const { name, column } = data.find((item) => item.id === active.id) ?? {};
+    const announcements: Announcements = {
+        onDragStart({ active }) {
+        const { name, column } = data.find((item) => item.id === active.id) ?? {};
 
-//       return `Picked up the card "${name}" from the "${column}" column`;
-//     },
-//     onDragOver({ active, over }) {
-//       const { name } = data.find((item) => item.id === active.id) ?? {};
-//       const newColumn = columns.find((column) => column.id === over?.id)?.name;
+        return `Picked up the card "${name}" from the "${column}" column`;
+        },
+        onDragOver({ active, over }) {
+        const { name } = data.find((item) => item.id === active.id) ?? {};
+        const newColumn = columns.find((column) => column.id === over?.id)?.name;
 
-//       return `Dragged the card "${name}" over the "${newColumn}" column`;
-//     },
-//     onDragEnd({ active, over }) {
-//       const { name } = data.find((item) => item.id === active.id) ?? {};
-//       const newColumn = columns.find((column) => column.id === over?.id)?.name;
+        return `Dragged the card "${name}" over the "${newColumn}" column`;
+        },
+        onDragEnd({ active, over }) {
+        const { name } = data.find((item) => item.id === active.id) ?? {};
+        const newColumn = columns.find((column) => column.id === over?.id)?.name;
 
-//       return `Dropped the card "${name}" into the "${newColumn}" column`;
-//     },
-//     onDragCancel({ active }) {
-//       const { name } = data.find((item) => item.id === active.id) ?? {};
+        return `Dropped the card "${name}" into the "${newColumn}" column`;
+        },
+        onDragCancel({ active }) {
+        const { name } = data.find((item) => item.id === active.id) ?? {};
 
-//       return `Cancelled dragging the card "${name}"`;
-//     },
-//   };
+        return `Cancelled dragging the card "${name}"`;
+        },
+    };
 </script>
 
-<!--accessibility={{ announcements }} collisionDetection={closestCenter}-->
-
 <DndContext
+    accessibility={{ announcements }}
+    collisionDetection={closestCenter}
     onDragEnd={handleDragEnd}
     onDragOver={handleDragOver}
     onDragStart={handleDragStart}
@@ -146,11 +148,13 @@
             {@render child({ column })}
         {/each}
     </div>
-<!-- {typeof window !== "undefined" &&
-    createPortal(
-    <DragOverlay>
-        <t.Out />
-    </DragOverlay>,
-    document.body
-    )} -->
+
+    {#if typeof window !== "undefined"}
+        <Portal>
+            <DragOverlay>
+                {@render ctx.activeCardSnippet?.()}
+            </DragOverlay>
+        </Portal>
+        
+    {/if}
 </DndContext>

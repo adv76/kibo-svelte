@@ -17,7 +17,7 @@ __Project Management__
 
 - [ ] Calendar
 - [ ] Gantt
-- [ ] Kanban
+- [x] Kanban
 - [ ] List
 - [ ] Table
 

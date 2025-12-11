@@ -3,9 +3,11 @@ title: Troubleshooting
 description: What to do if you run into issues with Kibo UI.
 ---
 
+## _These docs are not yet up to date._
+
 ## Why are my components not showing the correct styles?
 
-Make sure your project is configured correctly for shadcn/ui in Tailwind 4 - this means having a `globals.css` file that imports Tailwind and includes the shadcn/ui base styles.
+Make sure your project is configured correctly for shadcn-svelte in Tailwind 4 - this means having a `app.css` file that imports Tailwind and includes the shadcn-svelte base styles.
 
 ## I ran npx kibo-ui add but nothing was added to my project
 

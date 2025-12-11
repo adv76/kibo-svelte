@@ -14,22 +14,23 @@
         child,
         ...restProps
     }: Omit<HTMLAttributes<HTMLDivElement>, "children"> & {
-        child: Snippet<[{ item: T, index: number}]>;
+        child: Snippet<[{ item: T}]>;
     } = $props();
 
     const ctx = getContext();
 
     const filteredData = $derived(ctx.data.filter((item) => item.column === id));
+    const items = $derived(filteredData.map(i => i.id));
 </script>
 
 <ScrollArea class="overflow-hidden">
-    <SortableContext items={filteredData}>
+    <SortableContext {items}>
         <div
             class={cn("flex flex-grow flex-col gap-2 p-2", className)}
             {...restProps}
         >
-            {#each filteredData as item, index}
-                {@render child({ item, index })}
+            {#each filteredData as item(item.id)}
+                {@render child({ item })}
             {/each}
         </div>
     </SortableContext>

@@ -13,7 +13,6 @@
         children: Snippet;
     } = $props();
 
-    // was isOver ???
     const droppable = useDroppable({
         id
     });

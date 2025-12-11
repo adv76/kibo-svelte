@@ -15,7 +15,6 @@
 
     let {
         id,
-        index,
         name,
         class: className,
         children
@@ -41,11 +40,26 @@
     //     transition,
     //     transform: CSS.Transform.toString(transform),
     // };
+
+    let isOverlay = false;
+
+    $effect(() => {
+        console.log("effect");
+        if (ctx.activeCardId == id) {
+            ctx.activeCardSnippet = overlay;
+            isOverlay = true;
+            console.log("set snippet")
+        } else if (isOverlay) { // only unset if this card was the overlay card
+            ctx.activeCardSnippet = undefined;
+            isOverlay = false;
+            console.log("unset snippet")
+        }
+    })
+
     const style = $derived(
 		styleObjectToString({
+            transition: transition.current,
 			transform: CSS.Transform.toString(transform.current),
-			transition: isSorting.current ? transition.current : undefined,
-			zIndex: isDragging.current ? 1 : undefined,
 		})
 	);
 
@@ -67,6 +81,21 @@
     </Card>
 </div>
 
+{#snippet overlay()}
+    <Card
+        class={cn(
+            "cursor-grab gap-4 rounded-md p-3 shadow-sm ring-2 ring-primary",
+            isDragging && "cursor-grabbing",
+            className
+        )}
+    >
+        {#if children}
+            {@render children()}
+        {:else}
+            <p class="m-0 font-medium text-sm">{name}</p>    
+        {/if}
+    </Card>
+{/snippet}
 <!-- {#if activeCardId === id}
     <t.In>
         <Card
@@ -84,3 +113,5 @@
         </Card>
     </t.In>
 {/if} -->
+
+

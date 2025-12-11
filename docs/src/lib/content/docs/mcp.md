@@ -3,6 +3,8 @@ title: MCP Server
 description: Kibo UI supports the Model Context Protocol (MCP) for model-driven development.
 ---
 
+## _These docs are not yet up to date._
+
 The **Model Context Protocol (MCP)** is an open standard that allows AI assistants like Claude, Cursor, and other AI-powered tools to securely connect with external data sources and systems. Think of it as a "universal remote" that lets your AI tools access real-world data and functionality.
 
 Kibo UI supports MCP to supercharge your AI development workflow.

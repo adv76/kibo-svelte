@@ -101,6 +101,37 @@
 		"relativeUrl": "cursor.json"
 	},
 	{
+		"name": "image-zoom",
+		"title": "Image Zoom",
+		"type": "registry:ui",
+		"description": "Image zoom is a component that allows you to zoom in on an image.",
+		"dependencies": [
+			"svelte-medium-image-zoom"
+		],
+		"registryDependencies": [],
+		"relativeUrl": "image-zoom.json"
+	},
+	{
+		"name": "kanban",
+		"title": "Kanban",
+		"type": "registry:ui",
+		"description": "A kanban board is a visual tool that helps you manage and visualize your work. It is a board with columns, and each column represents a status, e.g. \"Backlog\", \"In Progress\", \"Done\".",
+		"dependencies": [
+			"@dnd-kit-svelte/core",
+			"@dnd-kit-svelte/sortable",
+			"@dnd-kit-svelte/svelte",
+			"@dnd-kit-svelte/utilities"
+		],
+		"devDependencies": [
+			"bits-ui"
+		],
+		"registryDependencies": [
+			"card",
+			"scroll-area"
+		],
+		"relativeUrl": "kanban.json"
+	},
+	{
 		"name": "marquee",
 		"title": "Marquee",
 		"type": "registry:ui",
@@ -193,5 +224,13 @@
 		],
 		"registryDependencies": [],
 		"relativeUrl": "theme-switcher.json"
+	},
+	{
+		"name": "typography",
+		"title": "typography",
+		"type": "registry:ui",
+		"description": "A component for applying consistent typography styles across your application.",
+		"registryDependencies": [],
+		"relativeUrl": "typography.json"
 	}
 ]

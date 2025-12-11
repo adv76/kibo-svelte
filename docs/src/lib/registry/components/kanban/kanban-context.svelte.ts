@@ -1,4 +1,4 @@
-import { createContext } from "svelte";
+import { createContext, type Snippet } from "svelte";
 import type { KanbanColumnProps, KanbanItemProps } from "./types";
 
 type KanbanStateProps<
@@ -18,6 +18,8 @@ class KanbanState<
     #data: T[];
     #activeCardId: string | null;
 
+    #activeCardSnippet = $state<Snippet>();
+
     constructor(props: KanbanStateProps<T, C>) {
         this.#columns = $derived(props.columns());
         this.#data = $derived(props.data());
@@ -32,6 +34,9 @@ class KanbanState<
 
     get activeCardId() { return this.#activeCardId };
     set activeCardId(v) { this.#activeCardId = v };
+
+    get activeCardSnippet() { return this.#activeCardSnippet };
+    set activeCardSnippet(v) { this.#activeCardSnippet = v };
 };
 
 const [ getContext, setContext ] = createContext<KanbanState>();

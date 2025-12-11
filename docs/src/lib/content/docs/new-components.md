@@ -3,6 +3,8 @@ title: New Components
 description: Learn about adding new components to Kibo UI.
 ---
 
+# This is a port and thus all new components should be submitted directly to Kibo UI.   
+
 One of the most exciting ways to contribute is by adding new components to Kibo UI. Maybe you have a component that you built in your app that you think would be useful for others – for example, a Maps widget, an advanced Date Range Picker, or something very specific like a Org Chart component. Here are some guidelines for contributing a new component:
 
 ## Fit & Scope
