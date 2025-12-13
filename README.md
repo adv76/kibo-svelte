@@ -18,7 +18,7 @@ __Project Management__
 - [ ] Calendar
 - [ ] Gantt
 - [x] Kanban
-- [ ] List
+- [x] List
 - [ ] Table
 
 __Code__
@@ -72,7 +72,7 @@ __Other__
 - [x] Marquee
 - [x] Pill
 - [x] QR Code
-- [ ] Rating
+- [x] Rating
 - [x] Relative Time
 - [x] Spinner
 - [x] Status

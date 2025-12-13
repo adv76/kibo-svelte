@@ -9,7 +9,6 @@
     import { resolve } from "$app/paths";
     import { Button } from "$lib/components/ui/button";
     import * as Tooltip from "$lib/components/ui/tooltip";
-    //import { DemoVideo } from "../demo-video";
     //import { GitHubButton } from "../github-button";
     import shadcn from "./shadcn.jpg";
 
@@ -53,7 +52,7 @@
             {/each}
         </div>
     </div>
-    <div class="container relative z-10 grid gap-8 sm:gap-12 md:gap-16">
+    <div class="container mx-auto relative z-10 grid gap-8 sm:gap-12 md:gap-16">
         <div class="mx-auto flex flex-col justify-center gap-6 text-balance">
             <h1 class="mb-0 text-balance text-center font-semibold text-4xl tracking-[-0.06em]! sm:text-5xl md:text-6xl xl:text-7xl">
                 High quality
