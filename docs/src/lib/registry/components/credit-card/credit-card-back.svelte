@@ -22,7 +22,8 @@
     class={cn(
         "backface-hidden absolute inset-0 flex overflow-hidden bg-foreground/90",
         "@xs:rounded-2xl rounded-lg",
-        flipCtx.isFlipped && "rotate-y-180",
+        // "group-hover/kibo-credit-card:rotate-y-180",
+        flipCtx && "rotate-y-180",
         className
     )}
     {...restProps}

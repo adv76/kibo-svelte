@@ -15,7 +15,7 @@
 
     let value = $state("shadcn");
     
-    const commands = {
+    const commands = $derived({
         // "kibo-ui": {
         //     label: "Kibo UI CLI",
         //     image: kibo,
@@ -26,7 +26,7 @@
             image: ShadcnSvelte,
             code: `npx shadcn-svelte@latest add http://adv76.github.io/kibo-svelte/r/${packageName}.json`,
         },
-    };
+    });
 </script>
 
 <Snippet.Root

@@ -1,7 +1,6 @@
 <script lang="ts">
     import {
         SiLucide,
-        SiRadixui,
         SiSvelte,
         SiTailwindcss,
         SiTypescript,
@@ -11,6 +10,7 @@
     import * as Tooltip from "$lib/components/ui/tooltip";
     //import { GitHubButton } from "../github-button";
     import shadcn from "./shadcn.jpg";
+    import BitsUi from "$lib/components/icons/bits-ui.svelte";
 
     const icons = [
         {
@@ -34,9 +34,9 @@
             color: "#f67373",
         },
         {
-            icon: SiRadixui,
-            name: "Radix UI",
-            color: "#000000",
+            icon: BitsUi,
+            name: "Bits UI",
+            color: "#f2f2f2",
         },
     ];
 </script>
@@ -69,6 +69,7 @@
                 components built with
                 <div class="-space-x-2 -translate-y-1.5 md:-translate-y-2.5 inline-flex items-center justify-center">
                     {#each icons as icon, index(icon.name)}
+                        {@const Icon = icon.icon}
                         <Tooltip.Root>
                             <Tooltip.Trigger>
                                 {#snippet child({ props })}
@@ -77,7 +78,9 @@
                                         style="background-color: {icon.color}; mask-image: {index ? "radial-gradient(circle 28px at -17px 50%, transparent 99%, white 100%)" : "none"}"
                                         {...props}
                                     >
-                                        <icon.icon class="size-3 sm:size-4 md:size-5 lg:size-6" />
+                                        <div class="size-3 sm:size-4 md:size-5 lg:size-6">
+                                            <Icon  />
+                                        </div>
                                     </div>
                                 {/snippet}
                             </Tooltip.Trigger>

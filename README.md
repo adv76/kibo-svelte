@@ -43,7 +43,7 @@ __Images__
 
 __Finance__
 
-- [ ] Credit Card
+- [x] Credit Card
 - [ ] Ticker
 
 __Social__

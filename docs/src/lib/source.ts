@@ -162,6 +162,24 @@ export function getComponentGroups(): SourceGroup[] {
     return groups;
 };
 
+export function getPrevComponent(component: string): SourceEntry | undefined {
+    const components = getComponentGroups().flatMap(grp => grp.items);
+    const index = components.findIndex(c => c.key == component);
+
+    if (index == -1) return undefined;
+
+    return components[index - 1];
+};
+
+export function getNextComponent(component: string): SourceEntry | undefined {
+    const components = getComponentGroups().flatMap(grp => grp.items);
+    const index = components.findIndex(c => c.key == component);
+
+    if (index == -1) return undefined;
+
+    return components[index + 1];
+};
+
 
 export function getBlocks(): SourceEntry[] {
     const blockList: SourceEntry[] = [];
