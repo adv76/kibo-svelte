@@ -21,7 +21,7 @@
 
 <motion.div
     aria-hidden="true"
-    className={cn("absolute inset-0 h-full w-full object-cover", className)}
+    class={cn("absolute inset-0 h-full w-full object-cover", className)}
     role="img"
     style="clip-path: {position === "left" ? leftClipPath : rightClipPath};"
     {...restProps}

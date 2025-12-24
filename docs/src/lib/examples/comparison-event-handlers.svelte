@@ -16,7 +16,7 @@
             width={1920}
         />
     </Comparison.Item>
-    <Comparison.Item className="bg-blue-500" position="right">
+    <Comparison.Item class="bg-blue-500" position="right">
         <img
             alt="Placeholder 2"
             class="opacity-50"
