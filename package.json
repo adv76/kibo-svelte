@@ -3,8 +3,5 @@
         "dev": "pnpm -F docs dev",
         "build": "pnpm -F docs build",
         "registry:build": "pnpm -F docs registry:build"
-    },
-    "dependencies": {
-        "@humanspeak/svelte-motion": "^0.1.12"
     }
 }
