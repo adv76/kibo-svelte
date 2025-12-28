@@ -27,12 +27,12 @@
         isSelected && "bg-accent/80",
         className
     )}
-    onClick={(e) => {
+    onclick={(e) => {
         treeCtx.toggleExpanded(nodeCtx.nodeId);
         treeCtx.handleSelection(nodeCtx.nodeId, e.ctrlKey || e.metaKey);
         onclick?.(e);
     }}
-    style="paddingLeft: {nodeCtx.level * (treeCtx.indent ?? 0) + 8 };"
+    style="padding-left: {nodeCtx.level * (treeCtx.indent ?? 0) + 8 }px;"
     whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
     {...restProps}
 >

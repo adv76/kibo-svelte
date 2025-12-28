@@ -2,16 +2,16 @@ import { createContext } from "svelte";
 import type { SvelteSet } from "svelte/reactivity";
 
 type TreeStateProps = {
-    expandedIds: SvelteSet<string>;
-    selectedIds: string[];
+    expandedIds: () => SvelteSet<string>;
+    selectedIds: () => string[];
     toggleExpanded: (nodeId: string) => void;
     handleSelection: (nodeId: string, ctrlKey: boolean) => void;
-    showLines?: boolean;
-    showIcons?: boolean;
-    selectable?: boolean;
-    multiSelect?: boolean;
-    indent?: number;
-    animateExpand?: boolean;
+    showLines?: () => boolean;
+    showIcons?: () => boolean;
+    selectable?: () => boolean;
+    multiSelect?: () => boolean;
+    indent?: () => number;
+    animateExpand?: () => boolean;
 };
 
 class TreeState {
@@ -27,16 +27,16 @@ class TreeState {
     #animateExpand: boolean;
 
     constructor(props: TreeStateProps) {
-        this.#expandedIds = $derived(props.expandedIds);
-        this.#selectedIds = $derived(props.selectedIds);
+        this.#expandedIds = $derived(props.expandedIds());
+        this.#selectedIds = $derived(props.selectedIds());
         this.#toggleExpanded = $derived(props.toggleExpanded);
         this.#handleSelection = $derived(props.handleSelection);
-        this.#showLines = $derived(props.showLines ?? true);
-        this.#showIcons = $derived(props.showIcons ?? true);
-        this.#selectable = $derived(props.selectable ?? true);
-        this.#multiSelect = $derived(props.multiSelect ?? false);
-        this.#indent = $derived(props.indent ?? 20);
-        this.#animateExpand = $derived(props.animateExpand ?? true);
+        this.#showLines = $derived(props.showLines?.() ?? true);
+        this.#showIcons = $derived(props.showIcons?.() ?? true);
+        this.#selectable = $derived(props.selectable?.() ?? true);
+        this.#multiSelect = $derived(props.multiSelect?.() ?? false);
+        this.#indent = $derived(props.indent?.() ?? 20);
+        this.#animateExpand = $derived(props.animateExpand?.() ?? true);
     };
 
     get expandedIds() { return this.#expandedIds };

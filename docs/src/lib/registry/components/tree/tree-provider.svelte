@@ -1,107 +1,104 @@
-export type TreeProviderProps = {
-  children: ReactNode;
-  defaultExpandedIds?: string[];
-  showLines?: boolean;
-  showIcons?: boolean;
-  selectable?: boolean;
-  multiSelect?: boolean;
-  selectedIds?: string[];
-  onSelectionChange?: (selectedIds: string[]) => void;
-  indent?: number;
-  animateExpand?: boolean;
-  className?: string;
-};
+<script lang="ts">
+    import type { Snippet } from "svelte";
+    import { SvelteSet } from "svelte/reactivity";
+    import { setupTreeState } from "./tree-context.svelte";
+    import { motion } from "@humanspeak/svelte-motion";
+    import { cn } from "$lib/utils";
 
-export const TreeProvider = ({
-  children,
-  defaultExpandedIds = [],
-  showLines = true,
-  showIcons = true,
-  selectable = true,
-  multiSelect = false,
-  selectedIds,
-  onSelectionChange,
-  indent = 20,
-  animateExpand = true,
-  className,
-}: TreeProviderProps) => {
-  const [expandedIds, setExpandedIds] = useState<Set<string>>(
-    new Set(defaultExpandedIds)
-  );
-  const [internalSelectedIds, setInternalSelectedIds] = useState<string[]>(
-    selectedIds ?? []
-  );
+    type Props = {
+        showLines?: boolean;
+        showIcons?: boolean;
+        selectable?: boolean;
+        multiSelect?: boolean;
+        expandedIds?: string[];
+        selectedIds?: string[];
+        onSelectionChange?: (selectedIds: string[]) => void;
+        indent?: number;
+        animateExpand?: boolean;
+        class?: string;
+        children?: Snippet;
+    };
 
-  const isControlled =
-    selectedIds !== undefined && onSelectionChange !== undefined;
-  const currentSelectedIds = isControlled ? selectedIds : internalSelectedIds;
+    let {
+        showLines = true,
+        showIcons = true,
+        selectable = true,
+        multiSelect = false,
+        expandedIds: expandedIdsProp = [],
+        selectedIds = $bindable([]),
+        onSelectionChange,
+        indent = 20,
+        animateExpand = true,
+        class: className,
+        children
+    }: Props = $props();
 
-  const toggleExpanded = useCallback((nodeId: string) => {
-    setExpandedIds((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(nodeId)) {
-        newSet.delete(nodeId);
-      } else {
-        newSet.add(nodeId);
-      }
-      return newSet;
-    });
-  }, []);
+    let expandedIds = $derived(new SvelteSet<string>(expandedIdsProp));
+    
+    // TODO copy ids??
+    // const [internalSelectedIds, setInternalSelectedIds] = useState<string[]>(
+    //     selectedIds ?? []
+    // );
 
-  const handleSelection = useCallback(
-    (nodeId: string, ctrlKey = false) => {
-      if (!selectable) {
-        return;
-      }
+    // const isControlled =
+    //     selectedIds !== undefined && onSelectionChange !== undefined;
+    // const currentSelectedIds = isControlled ? selectedIds : internalSelectedIds;
 
-      let newSelection: string[];
+    const toggleExpanded = (nodeId: string) => {
+        if (expandedIds.has(nodeId)) {
+            expandedIds.delete(nodeId);
+        } else {
+            expandedIds.add(nodeId);
+        }
+    };
 
-      if (multiSelect && ctrlKey) {
-        newSelection = currentSelectedIds.includes(nodeId)
-          ? currentSelectedIds.filter((id) => id !== nodeId)
-          : [...currentSelectedIds, nodeId];
-      } else {
-        newSelection = currentSelectedIds.includes(nodeId) ? [] : [nodeId];
-      }
+    const handleSelection = (nodeId: string, ctrlKey = false) => {
+        if (!selectable) {
+            return;
+        }
 
-      if (isControlled) {
-        onSelectionChange?.(newSelection);
-      } else {
-        setInternalSelectedIds(newSelection);
-      }
-    },
-    [
-      selectable,
-      multiSelect,
-      currentSelectedIds,
-      isControlled,
-      onSelectionChange,
-    ]
-  );
+        if (multiSelect && ctrlKey) {
+            const index = selectedIds.indexOf(nodeId);
+            if (index >= 0) {
+                selectedIds.splice(index, 1);
+            } else {
+                selectedIds.push(nodeId);
+            }
+        } else {
+            const index = selectedIds.indexOf(nodeId);
+            if (index >= 0) {
+                selectedIds = [];
+            } else {
+                selectedIds = [nodeId]
+            }
+        }
 
-  return (
-    <TreeContext.Provider
-      value={{
-        expandedIds,
-        selectedIds: currentSelectedIds,
+        // if (isControlled) {
+        //     onSelectionChange?.(newSelection);
+        // } else {
+        //     setInternalSelectedIds(newSelection);
+        // }
+    };
+
+    const ctx = setupTreeState({
+        expandedIds: () => expandedIds,
+        selectedIds: () => selectedIds,
         toggleExpanded,
         handleSelection,
-        showLines,
-        showIcons,
-        selectable,
-        multiSelect,
-        indent,
-        animateExpand,
-      }}
-    >
-      <motion.div
-        animate={{ opacity: 1, y: 0 }}
-        className={cn("w-full", className)}
-        initial={{ opacity: 0, y: 10 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-      >
-        {children}
-      </motion.div>
-    </TreeContext.Provider>
-  );
-};
+        showLines: () => showLines,
+        showIcons: () => showIcons,
+        selectable: () => selectable,
+        multiSelect: () => multiSelect,
+        indent: () => indent,
+        animateExpand: () => animateExpand
+    });
+</script>
+
+<motion.div
+    animate={{ opacity: 1, y: 0 }}
+    class={cn("w-full", className)}
+    initial={{ opacity: 0, y: 10 }}
+    transition={{ duration: 0.3, ease: "easeOut" }}
+>
+    {@render children?.()}
+</motion.div>

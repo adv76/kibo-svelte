@@ -23,11 +23,11 @@
 {#if hasChildren}
     <motion.div
         animate={{ rotate: isExpanded ? 90 : 0 }}
-        className={cn(
+        class={cn(
             "mr-1 flex h-4 w-4 cursor-pointer items-center justify-center",
             className
         )}
-        onClick={(e) => {
+        onclick={(e) => {
             e.stopPropagation();
             treeCtx.toggleExpanded(nodeCtx.nodeId);
             onclick?.(e);

@@ -77,4 +77,4 @@ __Other__
 - [x] Spinner
 - [x] Status
 - [x] Theme Switcher
-- [ ] Tree
+- [x] Tree
