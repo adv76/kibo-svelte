@@ -1,13 +1,12 @@
 <script lang="ts">
-    import { motion, useTransform } from "@humanspeak/svelte-motion";
+    import { motion, useMotionValue, useTransform, type PanInfo, type MotionStyle } from "motion-sv";
     import type { Snippet } from "svelte";
-    import { toStore } from "svelte/store";
 
     type Props = {
         onSwipe: (direction: "left" | "right") => void;
         threshold: number;
         exitDirection: "left" | "right" | null;
-        style?: string;
+        style?: MotionStyle;
         children?: Snippet;
     };
 
@@ -19,10 +18,11 @@
         children,
     }: Props = $props();
 
-    const x = $state(0);
-    const rotate = useTransform(toStore(() => x), [-200, 200], [-25, 25]);
+    const x = useMotionValue(0);
+
+    const rotate = useTransform(x, [-200, 200], [-25, 25]);
     const opacity = useTransform(
-        toStore(() => x),
+        x,
         [-200, -threshold, 0, threshold, 200],
         [0, 1, 1, 1, 0]
     );
@@ -49,19 +49,17 @@
     class="absolute inset-0 cursor-grab active:cursor-grabbing"
     drag="x"
     dragConstraints={{ left: 0, right: 0 }}
-    ondragend={handleDragEnd}
-    style="x: {x}; rotate: {rotate}; opacity: {opacity}; {style}"
+    onDragEnd={handleDragEnd}
+    style={{
+        x,
+        rotate,
+        opacity,
+        ...style
+    }}
     transition={{ duration: 0.3, ease: "easeOut" }}
     whileDrag={{ scale: 1.05 }}
 >
     <div class="h-full w-full select-none rounded-lg shadow-lg">
         {@render children?.()}
     </div>
-
-    <!-- {cloneElement(castedChildren, {
-    className: cn(
-        "h-full w-full select-none rounded-lg shadow-lg",
-        castedChildren.props.className
-    ),
-    })} -->
 </motion.div>

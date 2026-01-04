@@ -44,7 +44,7 @@ __Images__
 __Finance__
 
 - [x] Credit Card
-- [ ] Ticker
+- [x] Ticker
 
 __Social__
 
@@ -65,7 +65,7 @@ __Other__
 
 - [x] Color Picker
 - [x] Comparison
-- [ ] Deck
+- [x] Deck
 - [ ] Dialog Stack
 - [ ] Editor
 - [ ] Glimpse

@@ -1,8 +1,7 @@
 <script lang="ts" generics="T extends any">
     import { cn } from "$lib/utils";
-    import { motion } from "@humanspeak/svelte-motion";
-
-    import type { Snippet } from "svelte";
+    import { motion } from "motion-sv";
+    import { untrack, type Snippet } from "svelte";
     import type { HTMLAttributes } from "svelte/elements";
     import DeckCard from "./deck-card.svelte";
 
@@ -36,49 +35,25 @@
         child: Snippet<[{ item: T }]>
     } = $props();
 
-//     const childrenArray = Children.toArray(children) as ReactElement[];
-//   const [currentIndex, setCurrentIndex] = useControllableState({
-//     prop: currentIndexProp,
-//     defaultProp: defaultCurrentIndex,
-//     onChange: onCurrentIndexChange,
-//   });
-
-
+    let displayIndex = $state(currentIndex);
 
     let exitDirection = $state<"left" | "right" | null>(null);
 
-    //let displayIndex = $state(currentIndex);
-//   const isInternalChangeRef = useRef(false);
-//   const prevIndexRef = useRef(currentIndex);
+    $effect(() => {
+        currentIndex;
+        untrack(() => {
+            if (animateOnIndexChange && indexChangeDirection && currentIndex !== displayIndex) {
+                exitDirection = indexChangeDirection;
 
-  // Detect external currentIndex changes and trigger animation
-//   useEffect(() => {
-//     const prevIndex = prevIndexRef.current;
-
-//     // Skip initial mount and internal changes
-//     if (prevIndex === currentIndex || isInternalChangeRef.current) {
-//       isInternalChangeRef.current = false;
-//       prevIndexRef.current = currentIndex;
-//       setDisplayIndex(currentIndex);
-//       return;
-//     }
-
-//     // Only animate if the option is enabled and we have cards to show
-//     if (animateOnIndexChange && prevIndex < childrenArray.length) {
-//       setExitDirection(indexChangeDirection);
-
-//       // Update display index after animation completes
-//       setTimeout(() => {
-//         setExitDirection(null);
-//         setDisplayIndex(currentIndex);
-//       }, 300);
-//     } else {
-//       // No animation, update display index immediately
-//       setDisplayIndex(currentIndex);
-//     }
-
-//     prevIndexRef.current = currentIndex;
-//   });
+                // Update display index after animation completes
+                setTimeout(() => {
+                    exitDirection = null;
+                    displayIndex = currentIndex;
+                }, 300);
+            }
+        });
+        
+    });
 
     const handleSwipe = (direction: "left" | "right") => {
         console.log("handle swipe")
@@ -98,22 +73,13 @@
 
         // Move to next card after animation
         setTimeout(() => {
-            // isInternalChangeRef.current = true;
+            displayIndex++;
             currentIndex++;
             exitDirection = null;
         }, 300);
     };
 
-//   const visibleCards = childrenArray.slice(
-//     displayIndex,
-//     displayIndex + stackSize
-//   );
-
-//   if (displayIndex >= childrenArray.length) {
-//     return null;
-//   }
-
-    const visibleItems = $derived(items.slice(currentIndex, currentIndex + stackSize));
+    const visibleItems = $derived(items.slice(displayIndex, displayIndex + stackSize));
 </script>
 
 {#if currentIndex < items.length}
@@ -129,14 +95,20 @@
             {@const yOffset = index * 4}
 
             {#if isTopCard}
-                <DeckCard
-                    exitDirection={exitDirection}
-                    onSwipe={handleSwipe}
-                    style="z-index: {zIndex}; scale: {scaleValue}; y: {yOffset};"
-                    threshold={threshold}
-                >
-                    {@render child({ item })}
-                </DeckCard>
+                {#key displayIndex}
+                    <DeckCard
+                        exitDirection={exitDirection}
+                        onSwipe={handleSwipe}
+                        style={{
+                            zIndex,
+                            scale: scaleValue,
+                            y: yOffset
+                        }}
+                        threshold={threshold}
+                    >
+                        {@render child({ item })}
+                    </DeckCard>
+                {/key}
             {:else}
                 {@const nextCardScale = index === 1 && exitDirection ? 1 : scaleValue}
                 {@const nextCardY = index === 1 && exitDirection ? 0 : yOffset}
@@ -147,7 +119,11 @@
                         y: nextCardY,
                     }}
                     class="absolute inset-0"
-                    style="z-index: {zIndex}; scale: {scaleValue}; y: {yOffset}px;"
+                    style={{
+                        zIndex,
+                        scale: scaleValue,
+                        y: yOffset
+                    }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
                 >
                     {@render child({ item })}

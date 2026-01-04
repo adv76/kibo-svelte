@@ -62,7 +62,7 @@
     <Deck.Root class="mx-auto aspect-square w-40">
         <Deck.Cards
             animateOnIndexChange={true}
-            class="aspect-[2/3]"
+            class="aspect-2/3"
             bind:currentIndex
             indexChangeDirection={animationDirection}
             onSwipe={(_index, _direction) => {
